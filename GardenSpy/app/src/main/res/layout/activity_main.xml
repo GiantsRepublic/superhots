@@ -6,13 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    <EditText
+        android:layout_margin="15dp"
+        android:inputType="textEmailAddress"
+        android:hint="Enter your email"
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_margin="15dp"
+        android:inputType="textPassword"
+        android:hint="Enter your password"
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_margin="15dp"
+        android:id="@+id/buttonRegister"
+        android:text="Register User"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+     <TextView
+         android:textAlignment="center"
+         android:text="Already Register? Sign in"
+         android:id="@+id/textViewSignin"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
