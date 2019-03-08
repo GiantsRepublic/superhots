@@ -63,6 +63,8 @@ while True:
             
     temperature = ((dht_11.temperature * (9/5)) + 32)
     humidity = dht_11.humidity
+	dew_c = (dht_11.temperature * ((100-humidity)/5))
+	dew_f = ((9.0/5.0) * dht_11.temperature + 32)
     
     # Current Date and Time (Pi Clock)
     current_datetime = datetime.datetime.now()
@@ -73,6 +75,7 @@ while True:
     print ('Time: ' + current_datetime.strftime("%H:%M:%S"))
     print('Soil Moisture: {0:.1f} %'.format(wetPercent))
     print('Temperature: %d F' % temperature)
+	print('Dew Point: %d F' % dew_f)
     print('Humidity: %d %%' % humidity)
     print('')
     print('System Check')
