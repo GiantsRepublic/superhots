@@ -1,6 +1,9 @@
 # GardenPi.py
 # Author: Luke Duvall
 
+# Math library
+import math
+
 # Import Date and Time libraries
 import time
 import datetime
@@ -63,8 +66,10 @@ while True:
             
     temperature = ((dht_11.temperature * (9/5)) + 32)
     humidity = dht_11.humidity
-	dew_c = (dht_11.temperature * ((100-humidity)/5))
-	dew_f = ((9.0/5.0) * dht_11.temperature + 32)
+    sat_vapor = (6.11 * 10.0**((7.5 * dht_11.temperature)/(237.7 +dht_11.temperature)))
+    act_vapor = ((humidity * sat_vapor)/100)
+    dew_c = ((-430.22 + 237.7 * math.log(act_vapor))/((-1 * math.log(act_vapor))+19.08))
+    dew_f = ((9.0/5.0) * dew_c + 32)
     
     # Current Date and Time (Pi Clock)
     current_datetime = datetime.datetime.now()
@@ -75,8 +80,10 @@ while True:
     print ('Time: ' + current_datetime.strftime("%H:%M:%S"))
     print('Soil Moisture: {0:.1f} %'.format(wetPercent))
     print('Temperature: %d F' % temperature)
-	print('Dew Point: %d F' % dew_f)
     print('Humidity: %d %%' % humidity)
+    print('Satuarated Vapor: %d mb' % sat_vapor)
+    print('Actual Vapor: %d mb' % act_vapor)
+    print('Dew Point: %d F' % dew_f)
     print('')
     print('System Check')
     print('------------')
