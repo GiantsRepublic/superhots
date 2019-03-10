@@ -1,6 +1,7 @@
 package com.example.gardenspy;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -92,7 +93,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             registerUser();
         }
         if (view == textViewSignin){
-            //login here
+
         }
+    }
+
+    public void openLoginPage(View view){
+        Intent newActivity = new Intent(this, LoginActivity.class);
+        startActivity(newActivity);
     }
 }
