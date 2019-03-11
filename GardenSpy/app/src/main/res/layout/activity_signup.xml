@@ -4,9 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:visibility="visible"
+    tools:context=".SignupActivity">
 
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="165dp"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginRight="161dp"
+        android:layout_marginBottom="592dp"
+        android:text="Sign Up"
+        android:textSize="30sp"
+        app:fontFamily="cursive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        app:srcCompat="@color/overlay_color"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="344dp" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="378dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="Password"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textVisiblePassword|textPassword"
+        android:text="Repeat Password"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="564dp"
+        tools:text="Repeat Password" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="378dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="Password"
+        android:ems="10"
+        android:inputType="textVisiblePassword|textPassword"
+        android:text="Password"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="505dp"
+        tools:text="Password" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="378dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:text="Email"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="442dp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="378dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:background="#E62C5F93"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="641dp" />
 
 </android.support.constraint.ConstraintLayout>
 
