@@ -17,7 +17,7 @@
         android:layout_marginLeft="70dp"
         android:layout_marginBottom="120dp"
         android:onClick="openLoginPage"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:background="#E62C5F93"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -30,7 +30,7 @@
         android:layout_marginRight="70dp"
         android:layout_marginBottom="120dp"
         android:onClick="openSignupPage"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="151dp"
-        android:text="Garden Spy"
+        android:text="@string/garden_spy"
         android:textSize="30sp"
         android:textStyle="bold"
         app:fontFamily="cursive"
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Welcome"
+        android:text="@string/welcome"
         android:textSize="25sp"
         app:fontFamily="cursive"
         app:layout_constraintEnd_toEndOf="parent"

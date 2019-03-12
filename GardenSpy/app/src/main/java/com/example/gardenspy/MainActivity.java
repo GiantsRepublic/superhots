@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,13 +36,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressDialog = new ProgressDialog(this);
 
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        buttonRegister = findViewById(R.id.buttonRegister);
 
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        editTextEmail = findViewById(R.id.editTextEmail);
 
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextPassword = findViewById(R.id.editTextPassword);
 
-        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        textViewSignin = findViewById(R.id.textViewSignin);
 
         buttonRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);

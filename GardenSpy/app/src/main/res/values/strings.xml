@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Garden Spy</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="register_user">Register User</string>
+    <string name="already_register_sign_in">Already Registered? Sign In</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="garden_spy">Garden Spy</string>
+    <string name="welcome">Welcome</string>
+    <string name="your_garden">Your Garden</string>
 </resources>
