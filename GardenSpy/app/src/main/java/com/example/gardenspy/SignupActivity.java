@@ -6,6 +6,7 @@ import android.nfc.TagLostException;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "SignupActivity";
-    private EditText emailEdit, passwordEdit;
+    private EditText nameEdit, emailEdit, passwordEdit, passwordMatch;
     private Button register;
 
     @Override
@@ -29,8 +30,10 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        nameEdit = findViewById(R.id.editTextName);
         emailEdit = findViewById(R.id.editTextEmail);
         passwordEdit = findViewById(R.id.editTextPassword);
+        passwordMatch = findViewById(R.id.editTextPasswordRepeat);
         register = findViewById(R.id.buttonSignup);
 
         mAuth = FirebaseAuth.getInstance();
@@ -38,12 +41,31 @@ public class SignupActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = nameEdit.getText().toString().trim();
                 String email = emailEdit.getText().toString().trim();
                 String password = passwordEdit.getText().toString().trim();
+                String passwordRepeat = passwordMatch.getText().toString().trim();
 
-                /*
-                Write checks here for password requirements
-                 */
+                if(TextUtils.isEmpty(name))
+                {
+                    nameEdit.setError("Name cannot be empty.");
+                    return;
+                }
+                if(TextUtils.isEmpty(email))
+                {
+                    emailEdit.setError("Email cannot be empty.");
+                    return;
+                }
+                if(TextUtils.isEmpty(password))
+                {
+                    passwordEdit.setError("Password cannot be empty.");
+                    return;
+                }
+                if (!TextUtils.equals(password, passwordRepeat))
+                {
+                    passwordMatch.setError("Your passwords must match");
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -54,7 +76,7 @@ public class SignupActivity extends AppCompatActivity {
                                     finish();
                                 }
                                 else{
-                                    Toast.makeText(getApplicationContext(), "Email or password is wrong",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Unable to Register",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
