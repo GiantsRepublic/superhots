@@ -5,6 +5,7 @@ import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -39,10 +40,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emailEdit.getText().toString().trim();
                 String password = passwordEdit.getText().toString().trim();
-
-                /*
-                Write checks for login here
-                 */
+                
+                if(TextUtils.isEmpty(email))
+                {
+                    emailEdit.setError("Email cannot be empty.");
+                    return;
+                }
+                if(TextUtils.isEmpty(password))
+                {
+                    passwordEdit.setError("Password cannot be empty.");
+                    return;
+                }
 
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
