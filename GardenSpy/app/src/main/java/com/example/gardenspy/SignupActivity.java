@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.w3c.dom.Text;
+
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText nameEdit, emailEdit, passwordEdit, passwordMatch;
@@ -54,9 +56,15 @@ public class SignupActivity extends AppCompatActivity {
                     passwordEdit.setError("Invalid Password");
                     return;
                 }
+                if(password.length() < 6){
+                    passwordEdit.setError("Password must be at least 6 characters long");
+                }
                 if (!TextUtils.equals(password, passwordRepeat)) {
                     passwordMatch.setError("Your passwords must match");
                     return;
+                }
+                if(passwordRepeat.length() < 6){
+                    passwordMatch.setError("Password must be at least 6 characters long");
                 }
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                     emailEdit.setError("Invalid Email Address");
