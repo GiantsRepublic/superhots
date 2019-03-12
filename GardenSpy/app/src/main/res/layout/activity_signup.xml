@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@color/overlay_color"
-        android:contentDescription="" />
+        android:contentDescription="@null" />
 
     <EditText
         android:id="@+id/editTextPasswordRepeat"
