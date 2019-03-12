@@ -48,20 +48,23 @@ public class SignupActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(name))
                 {
-                    Toast.makeText(getApplicationContext(), "Name cannot be empty.", Toast.LENGTH_SHORT).show();
+                    nameEdit.setError("Name cannot be empty.");
+                    return;
                 }
                 if(TextUtils.isEmpty(email))
                 {
-                    Toast.makeText(getApplicationContext(), "Email cannot be empty.", Toast.LENGTH_SHORT).show();
+                    emailEdit.setError("Email cannot be empty.");
+                    return;
                 }
                 if(TextUtils.isEmpty(password))
                 {
-                    Toast.makeText(getApplicationContext(), "Password cannot be empty.", Toast.LENGTH_SHORT).show();
+                    passwordEdit.setError("Password cannot be empty.");
+                    return;
                 }
                 if (!password.equals(passwordRepeat))
                 {
-                    passwordMatch.requestFocus();
-                    Toast.makeText(getApplicationContext(), "Your passwords must match", Toast.LENGTH_SHORT).show();
+                    passwordMatch.setError("Your passwords must match");
+                    return;
                 }
 
                 mAuth.createUserWithEmailAndPassword(email,password)
