@@ -30,16 +30,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@color/overlay_color" />
+        app:srcCompat="@color/overlay_color"
+        android:contentDescription="" />
 
     <EditText
         android:id="@+id/editTextPasswordRepeat"
         android:layout_width="378dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:contentDescription="@string/password"
-        android:ems="10"
         android:hint="@string/repeat_password"
+        android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
