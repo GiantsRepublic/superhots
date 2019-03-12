@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = emailEdit.getText().toString().trim();
                 String password = passwordEdit.getText().toString().trim();
-                
+
                 if(TextUtils.isEmpty(email))
                 {
                     emailEdit.setError("Email cannot be empty.");

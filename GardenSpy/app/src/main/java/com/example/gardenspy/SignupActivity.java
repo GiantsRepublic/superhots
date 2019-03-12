@@ -61,7 +61,7 @@ public class SignupActivity extends AppCompatActivity {
                     passwordEdit.setError("Password cannot be empty.");
                     return;
                 }
-                if (!password.equals(passwordRepeat))
+                if (!TextUtils.equals(password, passwordRepeat))
                 {
                     passwordMatch.setError("Your passwords must match");
                     return;
