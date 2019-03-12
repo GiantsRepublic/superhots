@@ -38,7 +38,7 @@
         app:srcCompat="@color/overlay_color" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editTextPasswordRepeat"
         android:layout_width="378dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editTextPassword"
         android:layout_width="378dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editTextEmail"
         android:layout_width="378dp"
         android:layout_height="45dp"
         android:layout_marginStart="17dp"
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextName"
         android:layout_width="378dp"
         android:layout_height="45dp"
         android:layout_marginStart="17dp"
@@ -105,7 +105,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"

@@ -16,7 +16,7 @@
         android:layout_marginEnd="280dp"
         android:layout_marginRight="280dp"
         android:layout_marginBottom="410dp"
-        android:text="Username"
+        android:text="Email"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="163dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="163dp"
@@ -55,7 +55,7 @@
         android:layout_marginRight="35dp"
         android:layout_marginBottom="403dp"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_Signin"
+        android:id="@+id/buttonSignin"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
