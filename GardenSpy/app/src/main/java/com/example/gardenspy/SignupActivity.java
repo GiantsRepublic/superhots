@@ -76,7 +76,7 @@ public class SignupActivity extends AppCompatActivity {
                                     finish();
                                 }
                                 else{
-                                    Toast.makeText(getApplicationContext(), "Email or password is wrong",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Unable to Register",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
