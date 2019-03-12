@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,16 +42,20 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailEdit.getText().toString().trim();
                 String password = passwordEdit.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email))
-                {
-                    emailEdit.setError("Email cannot be empty.");
+                //Start Validations
+                if(TextUtils.isEmpty(email)) {
+                    emailEdit.setError("Invalid Email Address");
                     return;
                 }
-                if(TextUtils.isEmpty(password))
-                {
-                    passwordEdit.setError("Password cannot be empty.");
+                if(TextUtils.isEmpty(password)) {
+                    passwordEdit.setError("Invalid Password");
                     return;
                 }
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    emailEdit.setError("Invalid Email Address");
+                    return;
+                }
+                //End Validations
 
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -59,8 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     startActivity(new Intent(getApplicationContext(),gardenListActivity.class));
                                     finish();
-                                }
-                                else {
+                                } else {
                                     Toast.makeText(getApplicationContext(),"Authentication Error", Toast.LENGTH_SHORT).show();
                                 }
                             }

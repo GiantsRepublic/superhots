@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,26 +47,28 @@ public class SignupActivity extends AppCompatActivity {
                 String password = passwordEdit.getText().toString().trim();
                 String passwordRepeat = passwordMatch.getText().toString().trim();
 
-                if(TextUtils.isEmpty(name))
-                {
-                    nameEdit.setError("Name cannot be empty.");
+                //Start Validations
+                if(TextUtils.isEmpty(name)) {
+                    nameEdit.setError("Invalid Name");
                     return;
                 }
-                if(TextUtils.isEmpty(email))
-                {
-                    emailEdit.setError("Email cannot be empty.");
+                if(TextUtils.isEmpty(email)) {
+                    emailEdit.setError("Invalid Email");
                     return;
                 }
-                if(TextUtils.isEmpty(password))
-                {
-                    passwordEdit.setError("Password cannot be empty.");
+                if(TextUtils.isEmpty(password)) {
+                    passwordEdit.setError("Invalid Password");
                     return;
                 }
-                if (!TextUtils.equals(password, passwordRepeat))
-                {
+                if (!TextUtils.equals(password, passwordRepeat)) {
                     passwordMatch.setError("Your passwords must match");
                     return;
                 }
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    emailEdit.setError("Invalid Email Address");
+                    return;
+                }
+                //End Validations
 
                 mAuth.createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -74,8 +77,7 @@ public class SignupActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                                     finish();
-                                }
-                                else{
+                                } else {
                                     Toast.makeText(getApplicationContext(), "Unable to Register",Toast.LENGTH_SHORT).show();
                                 }
                             }
