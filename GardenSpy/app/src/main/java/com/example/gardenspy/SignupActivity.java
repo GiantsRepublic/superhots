@@ -44,30 +44,35 @@ public class SignupActivity extends AppCompatActivity {
                 //Start Validations
                 if(TextUtils.isEmpty(name)) {
                     nameEdit.setError("Invalid Name");
+                    nameEdit.requestFocus();
                     return;
                 }
-                if(TextUtils.isEmpty(email)) {
+                if(TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     emailEdit.setError("Invalid Email");
+                    emailEdit.requestFocus();
                     return;
                 }
                 if(TextUtils.isEmpty(password)) {
                     passwordEdit.setError("Invalid Password");
+                    passwordEdit.requestFocus();
                     return;
                 }
                 if(password.length() < 6){
                     passwordEdit.setError("Password must be at least 6 characters long");
+                    passwordEdit.requestFocus();
+                    return;
                 }
                 if (!TextUtils.equals(password, passwordRepeat)) {
                     passwordMatch.setError("Your passwords must match");
+                    passwordMatch.requestFocus();
                     return;
                 }
                 if(passwordRepeat.length() < 6){
                     passwordMatch.setError("Password must be at least 6 characters long");
-                }
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    emailEdit.setError("Invalid Email Address");
+                    passwordMatch.requestFocus();
                     return;
                 }
+
                 //End Validations
 
                 mAuth.createUserWithEmailAndPassword(email,password)

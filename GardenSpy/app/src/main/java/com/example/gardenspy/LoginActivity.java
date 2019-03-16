@@ -38,16 +38,14 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEdit.getText().toString().trim();
 
                 //Start Validations
-                if(TextUtils.isEmpty(email)) {
+                if(TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     emailEdit.setError("Invalid Email Address");
+                    emailEdit.requestFocus();
                     return;
                 }
-                if(TextUtils.isEmpty(password)) {
+                if(TextUtils.isEmpty(password) || password.length() < 6) {
                     passwordEdit.setError("Invalid Password");
-                    return;
-                }
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    emailEdit.setError("Invalid Email Address");
+                    passwordEdit.requestFocus();
                     return;
                 }
                 //End Validations
