@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">Garden Spy</string>
-    <string name="enter_your_email">Enter your email</string>
-    <string name="enter_your_password">Enter your password</string>
-    <string name="register_user">Register User</string>
-    <string name="already_register_sign_in">Already Registered? Sign In</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="password">Password</string>

@@ -10,7 +10,6 @@
 
 
     <TextView
-        android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
@@ -41,10 +40,15 @@
         android:hint="@string/repeat_password"
         android:ems="10"
         android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_action_password"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/passwordRepeat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -54,10 +58,15 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_action_password"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/SignUpIcon"
         app:layout_constraintEnd_toEndOf="@+id/editTextPasswordRepeat"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextPasswordRepeat"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -67,10 +76,15 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_action_email"
+        android:drawableLeft="@drawable/ic_action_email"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/SignUpIcon"
         app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/editTextName"
@@ -80,11 +94,16 @@
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
+        android:drawableStart="@drawable/ic_action_name"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/SignUpIcon"
         app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/editTextEmail"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/buttonSignup"

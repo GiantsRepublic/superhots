@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#2C5F93</color>
     <color name="overlay_color">#D4426579</color>
-    <color name="button_blue">#EB2C5F93</color>
+    <color name="SignUpIcon">#D3D3D3</color>
+    <color name="passwordRepeat">#A9A9A9</color>
 </resources>

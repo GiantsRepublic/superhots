@@ -3,6 +3,7 @@ package com.example.gardenspy;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -28,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         emailEdit = findViewById(R.id.editTextEmail);
         passwordEdit = findViewById(R.id.editTextPassword);
         Button signin = findViewById(R.id.buttonSignin);
-
         mAuth = FirebaseAuth.getInstance();
 
         signin.setOnClickListener(new View.OnClickListener() {
