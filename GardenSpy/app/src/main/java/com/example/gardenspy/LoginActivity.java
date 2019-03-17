@@ -1,9 +1,8 @@
 package com.example.gardenspy;
 
-import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,10 +26,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        emailEdit = findViewById(R.id.editTextEmail);
-        passwordEdit = findViewById(R.id.editTextPassword);
-        Button signin = findViewById(R.id.buttonSignin);
+        emailEdit = findViewById(R.id.email);
+        passwordEdit = findViewById(R.id.password);
+        Button signin = findViewById(R.id.email_sign_in_button);
         mAuth = FirebaseAuth.getInstance();
+
+        final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
+        final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,14 +42,20 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Start Validations
                 if(TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    emailEdit.setError("Invalid Email Address");
+
+                    errorEmail.setError("Invalid Email Address");
                     emailEdit.requestFocus();
                     return;
+                } else {
+                   errorEmail.setError(null);
                 }
+
                 if(TextUtils.isEmpty(password) || password.length() < 6) {
-                    passwordEdit.setError("Invalid Password");
+                    errorPass.setError("Invalid Password");
                     passwordEdit.requestFocus();
                     return;
+                } else {
+                   errorPass.setError(null);
                 }
                 //End Validations
 
@@ -65,4 +74,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void openSignUpPage(View view){
+        Intent newActivity = new Intent(this, SignupActivity.class);
+        startActivity(newActivity);
+    }
 }
+

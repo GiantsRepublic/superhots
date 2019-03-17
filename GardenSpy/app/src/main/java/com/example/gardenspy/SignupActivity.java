@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -25,13 +26,17 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        nameEdit = findViewById(R.id.editTextName);
-        emailEdit = findViewById(R.id.editTextEmail);
-        passwordEdit = findViewById(R.id.editTextPassword);
-        passwordMatch = findViewById(R.id.editTextPasswordRepeat);
-        Button register = findViewById(R.id.buttonSignup);
-
+        nameEdit = findViewById(R.id.name);
+        emailEdit = findViewById(R.id.email);
+        passwordEdit = findViewById(R.id.password);
+        passwordMatch = findViewById(R.id.password_repeat);
+        Button register = findViewById(R.id.sign_up_button);
         mAuth = FirebaseAuth.getInstance();
+
+        final TextInputLayout errorName = findViewById(R.id.text_input_name); //For proper Error Message in Name field
+        final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
+        final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
+        final TextInputLayout errorPassRepeat = findViewById(R.id.text_input_password_repeat); //For proper Error Message in Password Repeat field
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,36 +48,52 @@ public class SignupActivity extends AppCompatActivity {
 
                 //Start Validations
                 if(TextUtils.isEmpty(name)) {
-                    nameEdit.setError("Invalid Name");
+                    errorName.setError("Invalid Name");
                     nameEdit.requestFocus();
                     return;
-                }
-                if(TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    emailEdit.setError("Invalid Email");
-                    emailEdit.requestFocus();
-                    return;
-                }
-                if(TextUtils.isEmpty(password)) {
-                    passwordEdit.setError("Invalid Password");
-                    passwordEdit.requestFocus();
-                    return;
-                }
-                if(password.length() < 6){
-                    passwordEdit.setError("Password must be at least 6 characters long");
-                    passwordEdit.requestFocus();
-                    return;
-                }
-                if (!TextUtils.equals(password, passwordRepeat)) {
-                    passwordMatch.setError("Your passwords must match");
-                    passwordMatch.requestFocus();
-                    return;
-                }
-                if(passwordRepeat.length() < 6){
-                    passwordMatch.setError("Password must be at least 6 characters long");
-                    passwordMatch.requestFocus();
-                    return;
+                } else {
+                    errorName.setError(null);
                 }
 
+                if(TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    errorEmail.setError("Invalid Email");
+                    emailEdit.requestFocus();
+                    return;
+                } else {
+                    errorEmail.setError(null);
+                }
+
+                if(TextUtils.isEmpty(password)) {
+                    errorPass.setError("Invalid Password");
+                    passwordEdit.requestFocus();
+                    return;
+                } else {
+                    errorPass.setError(null);
+                }
+
+                if(password.length() < 6){
+                    errorPass.setError("Password must be at least 6 characters long");
+                    passwordEdit.requestFocus();
+                    return;
+                } else {
+                    errorPass.setError(null);
+                }
+
+                if (!TextUtils.equals(password, passwordRepeat)) {
+                    errorPassRepeat.setError("Your passwords must match");
+                    passwordMatch.requestFocus();
+                    return;
+                } else {
+                    errorPassRepeat.setError(null);
+                }
+
+                if(passwordRepeat.length() < 6){
+                    errorPassRepeat.setError("Password must be at least 6 characters long");
+                    passwordMatch.requestFocus();
+                    return;
+                } else {
+                    errorPassRepeat.setError(null);
+                }
                 //End Validations
 
                 mAuth.createUserWithEmailAndPassword(email,password)
