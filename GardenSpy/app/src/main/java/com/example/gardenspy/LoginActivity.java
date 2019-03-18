@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -23,56 +24,64 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        emailEdit = findViewById(R.id.email);
-        passwordEdit = findViewById(R.id.password);
-        Button signin = findViewById(R.id.email_sign_in_button);
-        mAuth = FirebaseAuth.getInstance();
+        if(user != null){
+            Intent newActivity = new Intent(this, gardenListActivity.class);
+            startActivity(newActivity);
+        }
+        else {
+            setContentView(R.layout.activity_login);
 
-        final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
-        final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
+            emailEdit = findViewById(R.id.email);
+            passwordEdit = findViewById(R.id.password);
+            Button signin = findViewById(R.id.email_sign_in_button);
+            mAuth = FirebaseAuth.getInstance();
 
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailEdit.getText().toString().trim();
-                String password = passwordEdit.getText().toString().trim();
+            final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
+            final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
 
-                //Start Validations
-                if(TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            signin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String email = emailEdit.getText().toString().trim();
+                    String password = passwordEdit.getText().toString().trim();
 
-                    errorEmail.setError("Invalid Email Address");
-                    emailEdit.requestFocus();
-                    return;
-                } else {
-                   errorEmail.setError(null);
-                }
+                    //Start Validations
+                    if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
 
-                if(TextUtils.isEmpty(password) || password.length() < 6) {
-                    errorPass.setError("Invalid Password");
-                    passwordEdit.requestFocus();
-                    return;
-                } else {
-                   errorPass.setError(null);
-                }
-                //End Validations
+                        errorEmail.setError("Invalid Email Address");
+                        emailEdit.requestFocus();
+                        return;
+                    } else {
+                        errorEmail.setError(null);
+                    }
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
-                                    startActivity(new Intent(getApplicationContext(),gardenListActivity.class));
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(),"Authentication Error", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(password) || password.length() < 6) {
+                        errorPass.setError("Invalid Password");
+                        passwordEdit.requestFocus();
+                        return;
+                    } else {
+                        errorPass.setError(null);
+                    }
+                    //End Validations
+
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        startActivity(new Intent(getApplicationContext(), gardenListActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Authentication Error", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
-            }
-        });
+                            });
+                }
+            });
+        }
     }
 
     public void openSignUpPage(View view){
