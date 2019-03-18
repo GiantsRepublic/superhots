@@ -63,6 +63,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_password"
             android:layout_width="match_parent"
@@ -98,21 +103,14 @@
             android:text="@string/sign_in"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/sign_up_button"
-            style="?android:textAppearanceSmall"
-            android:layout_width="256dp"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/SignUpIcon"
+            android:layout_marginTop="15dp"
             android:onClick="openSignUpPage"
-            android:text="@string/sign_up"
+            android:text="@string/register"
             android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 

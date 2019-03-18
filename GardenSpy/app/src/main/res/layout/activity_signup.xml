@@ -36,7 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/colorAccentOpacity"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -137,7 +136,7 @@
             style="?android:textAppearanceSmall"
             android:layout_width="256dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:background="@color/SignUpIcon"
             android:text="@string/sign_up"
             android:textStyle="bold" />
