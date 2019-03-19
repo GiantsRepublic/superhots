@@ -1,7 +1,7 @@
-/**
- * SignUpActivity will handle all of the overall sign up process.
- *
- * Author: Leonel Jerez
+/*
+  SignUpActivity will handle all of the overall sign up process.
+
+  Author: Leonel Jerez
  */
 
 package com.example.gardenspy;

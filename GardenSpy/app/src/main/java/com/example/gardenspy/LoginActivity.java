@@ -1,7 +1,7 @@
-/**
- * LoginActivity will handle all of the overall login process.
- *
- * Author: Leonel Jerez
+/*
+  LoginActivity will handle all of the overall login process.
+
+  Author: Leonel Jerez
  */
 
 package com.example.gardenspy;
