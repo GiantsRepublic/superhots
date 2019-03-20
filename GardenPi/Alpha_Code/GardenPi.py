@@ -8,7 +8,7 @@ import math
 import time
 import datetime
 
-# Import SPI library (for hardware SPI) and MCP3008 library.
+# Import SPI library (for hardware SPI) and MCP3008 library
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 
@@ -17,6 +17,9 @@ import RPi.GPIO as GPIO
 
 # Import DHT11 library
 import dht11
+
+# Import Firebase library
+from firebase import firebase
 
 # Hardware SPI configuration:
 SPI_PORT   = 0
@@ -39,8 +42,14 @@ GPIO.setup(23, GPIO.OUT) # Relay 4
 GPIO.output(23, True) # Reset Relay
 
 # Light Cycle Variables
-light_on = 7
-light_off = 18
+light_on = 8
+light_off = 19
+
+# Firebase Database Reference
+fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
+
+# Firebase tracker
+count = 1
 
 # Intro Message
 print('Welcome to Garden Pi')
@@ -51,25 +60,26 @@ print('')
 
 while True:
     
-    # Soil Moisture Variable (MCP3008)
+    # Soil Moisture (MCP3008)
     currentLevel = mcp.read_adc(0)
     dryPercent = (currentLevel / 1000) * 100
-    wetPercent = 100 - dryPercent
+    wetPercent = 100 - int(dryPercent)
     
-    # Temperature and Humidity Variables (DHT11)
+    # Temperature and Humidity (DHT11)
     valid = 1
     while valid != 0:
         dht11_instance = dht11.DHT11(pin=17)
         dht_11 = dht11_instance.read()
         if dht_11.is_valid():
             valid = 0
-            
-    temperature = ((dht_11.temperature * (9/5)) + 32)
-    humidity = dht_11.humidity
-    sat_vapor = (6.11 * 10.0**((7.5 * dht_11.temperature)/(237.7 +dht_11.temperature)))
-    act_vapor = ((humidity * sat_vapor)/100)
+    
+    # Enviormental Variables
+    temperature = int((dht_11.temperature * (9/5)) + 32)
+    humidity = int(dht_11.humidity)
+    sat_vapor = int(6.11 * 10.0**((7.5 * dht_11.temperature)/(237.7 +dht_11.temperature)))
+    act_vapor = int((humidity * sat_vapor)/100)
     dew_c = ((-430.22 + 237.7 * math.log(act_vapor))/((-1 * math.log(act_vapor))+19.08))
-    dew_f = ((9.0/5.0) * dew_c + 32)
+    dew_f = int((9.0/5.0) * dew_c + 32)
     
     # Current Date and Time (Pi Clock)
     current_datetime = datetime.datetime.now()
@@ -88,6 +98,15 @@ while True:
     print('System Check')
     print('------------')
     
+    temp_fb = fb.patch('user/key/plants/reaper/temp/', {count:temperature})
+    humid_fb = fb.patch('user/key/plants/reaper/humid/', {count:humidity})
+    sat_vap_fb = fb.patch('user/key/plants/reaper/saturatedvapor/', {count:sat_vapor})
+    act_vap_fb = fb.patch('user/key/plants/reaper/actualvapor/', {count:act_vapor})
+    dew_fb = fb.patch('user/key/plants/reaper/dewpoint/', {count:dew_f})
+    moist_fb = fb.patch('user/key/plants/reaper/moisture/', {count:wetPercent})
+    date_fb = fb.patch('user/key/plants/reaper/date/', {count:current_datetime.strftime("%m/%d/%Y")})
+    time_fb = fb.patch('user/key/plants/reaper/time/', {count:current_datetime.strftime("%H:%M:%S")})
+                                                                     
     # Check Soil Moisture
     if wetPercent <= 30:    # <= 30%
         
@@ -97,7 +116,7 @@ while True:
         # Turn on/off water pump
         GPIO.output(23, False)
         print('WATER PUMP - ON')
-        time.sleep(2.5)    # 2 second water cycle 
+        time.sleep(3)    # 3 second water cycle 
         GPIO.output(23, True)
         print('WATER PUMP - OFF')
         
@@ -169,6 +188,11 @@ while True:
         # End of test
         print('---------------------')
         print('')
+    
+    if(count == 288):
+        count = 1
+    else:
+        count = count + 1
     
     # Wait 5 mins
     time.sleep(300)
