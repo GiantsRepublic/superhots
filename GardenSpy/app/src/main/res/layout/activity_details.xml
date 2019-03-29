@@ -17,19 +17,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Graphs"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/tempLabel"
         tools:text="Saturated Vapor" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/satVapLabel"
         android:layout_width="289dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="sarVapLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toEndOf="@+id/controls"
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toEndOf="@+id/navigationView"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         tools:text="satVapLabel" />
 
@@ -44,11 +44,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Graphs"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/moistLabel"
         tools:text="Temperature" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/tempLabel"
         android:layout_width="289dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
@@ -71,11 +71,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Graphs"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/humLabel"
         tools:text="Moisture" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/moistLabel"
         android:layout_width="289dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
@@ -98,11 +98,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Graphs"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/dewLabel"
         tools:text="Humidity" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/humLabel"
         android:layout_width="289dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
@@ -121,20 +121,22 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
+        android:text="Dew Point"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Graphs"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/vaporLabel"
         tools:text="Dew Point" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/dewLabel"
         android:layout_width="289dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="dewLabel"
+        android:text="dewLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/controls"
@@ -142,7 +144,7 @@
         tools:text="dewLabel" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/vaporLabel"
         android:layout_width="289dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
@@ -167,7 +169,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Graphs"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/timeLabel"
         tools:text="Vapor" />
 
     <com.google.android.material.navigation.NavigationView
@@ -233,7 +235,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/dateLabel"
         android:layout_width="104dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
@@ -260,7 +262,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/timeLabel"
         android:layout_width="289dp"
         android:layout_height="17dp"
         android:layout_marginStart="8dp"
