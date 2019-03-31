@@ -30,7 +30,7 @@ public class DetailsActivity extends AppCompatActivity {
         final TextView tempLabel = (TextView) findViewById(R.id.tempLabel);
         final TextView dateLabel = (TextView) findViewById(R.id.dateLabel);
 
-        timeLabel.setText("hello");
+//        timeLabel.setText("hello");
 
         //creating database instance
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -51,13 +51,13 @@ public class DetailsActivity extends AppCompatActivity {
                 vaporLabel.setText(vapor);
 
                 String dew = dataSnapshot.child("dewpoint").child("current").getValue().toString();
-                dewLabel.setText(dew);
+                dewLabel.setText(dew + " F");
 
                 String moisture = dataSnapshot.child("moisture").child("current").getValue().toString();
                 moistLabel.setText(moisture);
 
                 String humidity = dataSnapshot.child("humid").child("current").getValue().toString();
-                humLabel.setText(humidity);
+                humLabel.setText(humidity + " %");
 
                 String satVap = dataSnapshot.child("saturatedvapor").child("current").getValue().toString();
                 satVapLabel.setText(satVap);
