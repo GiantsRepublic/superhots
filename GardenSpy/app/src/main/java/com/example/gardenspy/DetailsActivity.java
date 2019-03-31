@@ -9,6 +9,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,14 +23,14 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         //setup text labels
-        final TextView timeLabel = (TextView) findViewById(R.id.timeLabel);
-        final TextView vaporLabel = (TextView) findViewById(R.id.vaporLabel);
-        final TextView dewLabel = (TextView) findViewById(R.id.dewLabel);
-        final TextView moistLabel = (TextView) findViewById(R.id.moistLabel);
-        final TextView humLabel = (TextView) findViewById(R.id.humLabel);
-        final TextView satVapLabel = (TextView) findViewById(R.id.satVapLabel);
-        final TextView tempLabel = (TextView) findViewById(R.id.tempLabel);
-        final TextView dateLabel = (TextView) findViewById(R.id.dateLabel);
+        final TextView timeLabel = findViewById(R.id.timeLabel);
+        final TextView vaporLabel = findViewById(R.id.vaporLabel);
+        final TextView dewLabel = findViewById(R.id.dewLabel);
+        final TextView moistLabel = findViewById(R.id.moistLabel);
+        final TextView humLabel = findViewById(R.id.humLabel);
+        final TextView satVapLabel = findViewById(R.id.satVapLabel);
+        final TextView tempLabel = findViewById(R.id.tempLabel);
+        final TextView dateLabel = findViewById(R.id.dateLabel);
 
 //        timeLabel.setText("hello");
 
@@ -41,28 +43,28 @@ public class DetailsActivity extends AppCompatActivity {
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.child("temp").child("current").getValue().toString();
-                tempLabel.setText(temp + " F");
+                String temp = Objects.requireNonNull(Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue())).toString();
+                tempLabel.setText(String.format("%s F", temp));
 
-                String time = dataSnapshot.child("time").child("current").getValue().toString();
+                String time = Objects.requireNonNull(dataSnapshot.child("time").child("current").getValue()).toString();
                 timeLabel.setText(time);
 
-                String vapor = dataSnapshot.child("actualvapor").child("current").getValue().toString();
+                String vapor = Objects.requireNonNull(dataSnapshot.child("actualvapor").child("current").getValue()).toString();
                 vaporLabel.setText(vapor);
 
-                String dew = dataSnapshot.child("dewpoint").child("current").getValue().toString();
-                dewLabel.setText(dew + " F");
+                String dew = Objects.requireNonNull(dataSnapshot.child("dewpoint").child("current").getValue()).toString();
+                dewLabel.setText(String.format("%s F", dew));
 
-                String moisture = dataSnapshot.child("moisture").child("current").getValue().toString();
+                String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("current").getValue()).toString();
                 moistLabel.setText(moisture);
 
-                String humidity = dataSnapshot.child("humid").child("current").getValue().toString();
-                humLabel.setText(humidity + " %");
+                String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
+                humLabel.setText(String.format("%s %%", humidity));
 
-                String satVap = dataSnapshot.child("saturatedvapor").child("current").getValue().toString();
+                String satVap = Objects.requireNonNull(dataSnapshot.child("saturatedvapor").child("current").getValue()).toString();
                 satVapLabel.setText(satVap);
 
-                String date = dataSnapshot.child("date").child("current").getValue().toString();
+                String date = Objects.requireNonNull(dataSnapshot.child("date").child("current").getValue()).toString();
                 dateLabel.setText(date);
 
             }
