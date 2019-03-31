@@ -41,15 +41,11 @@ GPIO.output(22, True) # Reset Relay
 GPIO.setup(23, GPIO.OUT) # Relay 4
 GPIO.output(23, True) # Reset Relay
 
-# Light Cycle Variables
-light_on = 8
-light_off = 19
-
 # Firebase Database Reference
 fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
 
 # Firebase tracker
-count = 1
+#count = 1
 
 # Intro Message
 print('Welcome to Garden Pi')
@@ -59,6 +55,30 @@ print('Checking System...')
 print('')
 
 while True:
+    
+    # Set Enivormental Thresholds
+    #temp_threshold = fb.get('user/key/plants/reaper/temp_threshold/', 'set_threshold')
+    #humid_threshold = fb.get('user/key/plants/reaper/humid_threshold/', 'set_threshold')
+    #moist_threshold = fb.get('user/key/plants/reaper/moist_threshold/', 'set_threshold')
+    #light_on = fb.get('user/key/plants/reaper/timer/', 'light_on' )
+    #light_off = fb.get('user/key/plants/reaper/timer/', 'light_off')
+    
+    # Pre Set Thresholds
+    temp_threshold = 85
+    humid_threshold = 60
+    moist_threshold = 30
+    light_on = 8
+    light_off = 19
+    
+    # Show Threshold Values
+    print('Thresholds Set')
+    print('--------------------')
+    print('FAN #1 (Temperature): ' + str(temp_threshold))
+    print('FAN #2 (Humidity): ' + str(humid_threshold))
+    print('Light On: ' + str(light_on))
+    print('Light Off: ' + str(light_off))
+    print('WATER PUMP (Moisture): ' + str(moist_threshold))
+    print('')
     
     # Soil Moisture (MCP3008)
     currentLevel = mcp.read_adc(0)
@@ -84,6 +104,7 @@ while True:
     # Current Date and Time (Pi Clock)
     current_datetime = datetime.datetime.now()
 
+    # Test Plant Values
     print('Testing Plant')
     print('-------------')
     print ('Date: ' + current_datetime.strftime("%m/%d/%Y"))
@@ -98,17 +119,17 @@ while True:
     print('System Check')
     print('------------')
     
-    temp_fb = fb.patch('user/key/plants/reaper/temp/', {count:temperature})
-    humid_fb = fb.patch('user/key/plants/reaper/humid/', {count:humidity})
-    sat_vap_fb = fb.patch('user/key/plants/reaper/saturatedvapor/', {count:sat_vapor})
-    act_vap_fb = fb.patch('user/key/plants/reaper/actualvapor/', {count:act_vapor})
-    dew_fb = fb.patch('user/key/plants/reaper/dewpoint/', {count:dew_f})
-    moist_fb = fb.patch('user/key/plants/reaper/moisture/', {count:wetPercent})
-    date_fb = fb.patch('user/key/plants/reaper/date/', {count:current_datetime.strftime("%m/%d/%Y")})
-    time_fb = fb.patch('user/key/plants/reaper/time/', {count:current_datetime.strftime("%H:%M:%S")})
+    temp_fb = fb.patch('user/key/plants/reaper/temp/', {'current':temperature})
+    humid_fb = fb.patch('user/key/plants/reaper/humid/', {'current':humidity})
+    sat_vap_fb = fb.patch('user/key/plants/reaper/saturatedvapor/', {'current':sat_vapor})
+    act_vap_fb = fb.patch('user/key/plants/reaper/actualvapor/', {'current':act_vapor})
+    dew_fb = fb.patch('user/key/plants/reaper/dewpoint/', {'current':dew_f})
+    moist_fb = fb.patch('user/key/plants/reaper/moisture/', {'current':wetPercent})
+    date_fb = fb.patch('user/key/plants/reaper/date/', {'current':current_datetime.strftime('%m/%d/%Y')})
+    time_fb = fb.patch('user/key/plants/reaper/time/', {'current':current_datetime.strftime('%H:%M:%S')})
                                                                      
     # Check Soil Moisture
-    if wetPercent <= 30:    # <= 30%
+    if wetPercent <= moist_threshold:    # <= 40%
         
         # Moisture state
         print('Moisture - LOW')
@@ -127,7 +148,7 @@ while True:
         print('WATER PUMP - OFF')
         
     # Check Temperature
-    if temperature >= 85:    # >= 85 degrees F
+    if temperature >= temp_threshold:    # >= 85 degrees F
         
         # Temperature State
         print('Temperature - HOT')
@@ -146,7 +167,7 @@ while True:
         print('FAN #1 - OFF')
     
     # Check Humidity
-    if humidity >= 60:    # >= 60%
+    if humidity >= humid_threshold:    # >= 60%
         
         # Humidity State
         print('Humidity - TOO HUMID')
@@ -188,11 +209,6 @@ while True:
         # End of test
         print('---------------------')
         print('')
-    
-    if(count == 288):
-        count = 1
-    else:
-        count = count + 1
     
     # Wait 5 mins
     time.sleep(300)

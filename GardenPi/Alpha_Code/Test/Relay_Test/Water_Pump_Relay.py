@@ -15,7 +15,7 @@ time.sleep(2)
 while place < times:
     GPIO.output(23, False)
     print("PUMP ON")
-    time.sleep(2) # Seconds
+    time.sleep(1.5) # 2 Seconds
     GPIO.output(23, True)
     print("PUMP OFF")
     time.sleep(1)
