@@ -1,103 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsActivity">
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="178dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="411dp"
-        android:background="@color/colorAccent"
-        app:itemBackground="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/controls"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="476dp"
-        android:background="@color/colorPrimary"
-        android:text="Controls"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Graphs"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/details2"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Details"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/Graphs"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Graphs"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details2" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="Current Data"
-        android:textColor="@color/primeNonOpaque"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/details2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/dateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="Date"
-        android:textAlignment="textEnd"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".DetailsActivity"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="427dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/navigationView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.037">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Controls"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/details2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Details"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/Graphs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Graphs"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Data"
+                android:textColor="@color/primeNonOpaque"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Date"
+                android:textAlignment="textEnd"
+                android:textSize="20sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView3"
@@ -106,18 +79,14 @@
             android:text="Time fetched"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="87dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/timeLabel"
-            android:layout_width="289dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="time"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="107dp"
             tools:text="timeLabel" />
 
         <TextView
@@ -128,18 +97,14 @@
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="237dp"
             tools:text="Humidity" />
 
         <TextView
             android:id="@+id/humLabel"
-            android:layout_width="289dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="humLabel"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="258dp"
             tools:text="humLabel" />
 
         <TextView
@@ -150,18 +115,14 @@
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="137dp"
             tools:text="Vapor" />
 
         <TextView
             android:id="@+id/vaporLabel"
-            android:layout_width="289dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="time"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="159dp"
             tools:text="vaporLabel" />
 
         <TextView
@@ -172,40 +133,32 @@
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="188dp"
             tools:text="Dew Point" />
 
         <TextView
             android:id="@+id/dewLabel"
-            android:layout_width="289dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="dewLabel"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="208dp"
             tools:text="dewLabel" />
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="161dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saturated Vapor"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="109dp"
-            tools:layout_editor_absoluteY="385dp"
             tools:text="Saturated Vapor" />
 
         <TextView
             android:id="@+id/satVapLabel"
-            android:layout_width="289dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="sarVapLabel"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="405dp"
             tools:text="satVapLabel" />
 
         <TextView
@@ -216,42 +169,33 @@
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="109dp"
-            tools:layout_editor_absoluteY="288dp"
             tools:text="Moisture" />
 
         <TextView
             android:id="@+id/moistLabel"
-            android:layout_width="289dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="moistLabel"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="305dp"
             tools:text="moistLabel" />
 
         <TextView
             android:id="@+id/textView13"
-            android:layout_width="293dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Temperature"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="334dp"
             tools:text="Temperature" />
 
         <TextView
             android:id="@+id/tempLabel"
-            android:layout_width="289dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="tempLabel"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="355dp"
             tools:text="tempLabel" />
 
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
