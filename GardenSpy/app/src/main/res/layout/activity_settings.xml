@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="128dp"
+        android:text="Settings"
+        android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Headline6"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/navigationView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="178dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="411dp"
+        android:background="@color/colorAccent"
+        app:itemBackground="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/controls"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="476dp"
+        android:background="@color/colorPrimary"
+        android:text="Settings"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Graphs"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/details2"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Details"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Graphs"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Graphs"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details2" />
+
+    <ToggleButton
+        android:id="@+id/PowerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="715dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="320dp"
+        android:layout_marginBottom="200dp"
+        android:text="Power On/Off"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/HumidityThreshold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/MoistureThreshold"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
+        android:text="Moisture Threshold:"
+        android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/PowerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/TempThreshold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="32dp"
+        android:text="Temperature Threshold:"
+        android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/Light_OnThreshold"
+        app:layout_constraintEnd_toStartOf="@+id/navigationView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Light_OnThreshold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="770dp"
+        android:layout_marginBottom="40dp"
+        android:text="On Threshold:"
+        android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Light_OffThreshold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="800dp"
+        android:text="Off Threshold:"
+        android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/navigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/moistThreshLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="110dp"
+        android:text="moistLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="moistureLabel" />
+
+    <TextView
+        android:id="@+id/tempThreshLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="220dp"
+        android:text="tempLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="tempLabel" />
+
+    <TextView
+        android:id="@+id/HumidityThreshold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="300dp"
+        android:text="Humidity Threshold"
+        android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/humidityThreshLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="320dp"
+        android:text="humidityLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="humidityLabel" />
+
+    <TextView
+        android:id="@+id/onThreshLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="370dp"
+        android:text="onLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="onLabel" />
+
+    <TextView
+        android:id="@+id/offThreshLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="410dp"
+        android:text="offLabel"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="offLabel" />
+
+    <EditText
+        android:id="@+id/moistureEdit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="80dp"
+        android:hint="edit here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <EditText
+        android:id="@+id/tempEdit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="190dp"
+        android:hint="edit here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <EditText
+        android:id="@+id/humidityEdit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="290dp"
+        android:hint="edit here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <EditText
+        android:id="@+id/light_onEdit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="340dp"
+        android:hint="edit here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <EditText
+        android:id="@+id/light_offEdit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="390dp"
+        android:hint="edit here"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/saveEdits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="30dp"
+        android:text="Save Edits"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
