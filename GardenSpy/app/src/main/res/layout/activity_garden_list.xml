@@ -37,7 +37,8 @@
                 android:minHeight="50dp"
                 android:onClick="openDetailsPage"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_gardenspyicon" />
+                app:srcCompat="@drawable/ic_gardenspyicon"
+                android:contentDescription="@null" />
 
         </TableRow>
 
@@ -51,7 +52,8 @@
                 android:layout_height="wrap_content"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
-                app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+                app:srcCompat="@drawable/ic_add_circle_black_24dp"
+                android:contentDescription="@null" />
 
             <TableRow
                 android:layout_width="match_parent"
