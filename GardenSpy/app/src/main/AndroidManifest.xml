@@ -20,6 +20,7 @@
         <activity android:name=".gardenListActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity">
+        <activity android:name=".SettingsActivity">   
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
