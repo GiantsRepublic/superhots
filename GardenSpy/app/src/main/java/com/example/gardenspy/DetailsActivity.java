@@ -38,8 +38,7 @@ public class DetailsActivity extends AppCompatActivity {
         //creating database instance
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference rootRef = database.getReference("user/key/plants/reaper");
-//        FirebaseDatabase data = new FirebaseDatabase("test-5487a/user/key/plants/reaper");
-//        mRef = new FirebaseDatabase("https://test-5487a.firebaseio.com/");
+
 
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
