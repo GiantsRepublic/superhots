@@ -2,6 +2,8 @@ package com.example.gardenspy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,10 +23,10 @@ import android.widget.ToggleButton;
 import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
-
     private static final String TAG = SettingsActivity.class.getSimpleName();
-    private static boolean powerState;
+    // --Commented out by Inspection (4/1/2019 9:36 PM):private static boolean powerState;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -41,13 +43,13 @@ public class SettingsActivity extends AppCompatActivity {
         final DatabaseReference rootRef = database.getReference("user/key/plants/reaper");
 
 
-        ToggleButton toggle = findViewById(R.id.PowerButton);
+        /**ToggleButton toggle = findViewById(R.id.PowerButton);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 powerState = isChecked;
             }
-        });
-
+        });*/
 
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -62,11 +64,11 @@ public class SettingsActivity extends AppCompatActivity {
                 String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
                 humidityLabel.setText(humidity);
 
-                String on = Objects.requireNonNull(dataSnapshot.child("on").child("current").getValue()).toString();
-                onLabel.setText(on);
+                //String on = Objects.requireNonNull(dataSnapshot.child("on").child("current").getValue()).toString();
+                //onLabel.setText(on);
 
-                String off = Objects.requireNonNull(dataSnapshot.child("off").child("current").getValue()).toString();
-                offLabel.setText(off);
+                //String off = Objects.requireNonNull(dataSnapshot.child("off").child("current").getValue()).toString();
+                //offLabel.setText(off);
             }
 
             @Override
@@ -77,7 +79,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         saveEdits.setOnClickListener(new View.OnClickListener() {
-
+            @Override
             public void onClick(View v) {
 
                 EditText moistureEdit = findViewById(R.id.moistureEdit);
@@ -107,4 +109,16 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
+    //method for settings button
+    public void openDetailsPage(View view){
+        Intent newActivity = new Intent(this, DetailsActivity.class); //opens the details page
+        startActivity(newActivity);
+    }
+
+    /**method for graphs button
+     public void openGraphsPage(View view){
+     Intent newActivity = new Intent(this, SettingsActivity.class); //opens the sign up page
+     startActivity(newActivity);
+     }*/
 }

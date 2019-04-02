@@ -1,7 +1,9 @@
 package com.example.gardenspy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,4 +80,17 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
     }
+
+    //method for settings button
+    public void openSettingsPage(View view){
+        Intent newActivity = new Intent(this, SettingsActivity.class); //opens the settings page
+        startActivity(newActivity);
+    }
+
+    /**method for graphs button
+    public void openGraphsPage(View view){
+        Intent newActivity = new Intent(this, SettingsActivity.class); //opens the sign up page
+        startActivity(newActivity);
+    }*/
+
 }
