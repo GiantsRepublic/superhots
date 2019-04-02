@@ -44,38 +44,24 @@ public class SignUpActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //variables for validation checks
-                String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
-                String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
-                String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
-                String passwordRepeat = passwordMatch.getText().toString().trim(); //gets the password repeat and converts it into a string and trims any extra spaces
-
-                //Start Validations
-                startValidations(name, email, password, passwordRepeat);
-
-                mAuth.createUserWithEmailAndPassword(email, password) //creates the user if the validations pass
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Login if Registration is successful.
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Unable to Register", Toast.LENGTH_SHORT).show(); //Error message if Registration fails.
-                                }
-                            }
-                        });
+                signUpUser();
             }
         });
     }
 
-    private void startValidations(String name, String email, String password, String passwordRepeat) {
+    private void signUpUser() {
+        //variables for validation checks
+        String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
+        String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
+        String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
+        String passwordRepeat = passwordMatch.getText().toString().trim(); //gets the password repeat and converts it into a string and trims any extra spaces
         //calling the TextInputLayout allows you to show an error at the bottom of the text field instead of having it pop up on the side
         final TextInputLayout errorName = findViewById(R.id.text_input_name); //For proper Error Message in Name field.
         final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
         final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
         final TextInputLayout errorPassRepeat = findViewById(R.id.text_input_password_repeat); //For proper Error Message in Password Repeat field
 
+        //start validations
         if (TextUtils.isEmpty(name)) {
             errorName.setError("Invalid Name"); //error message
             nameEdit.requestFocus(); //Will focus the name field when an error is thrown so that the user can change it
@@ -123,5 +109,19 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             errorPassRepeat.setError(null);
         }
+        //end validations
+
+        mAuth.createUserWithEmailAndPassword(email, password) //creates the user if the validations pass
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Login if Registration is successful.
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Unable to Register", Toast.LENGTH_SHORT).show(); //Error message if Registration fails.
+                        }
+                    }
+                });
     }
 }

@@ -49,39 +49,26 @@ public class LoginActivity extends AppCompatActivity {
             signIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //variables for validation checks
-                    String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
-                    String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
-
-                    //Start Validations
-                    startValidations(email, password);
-
-                    mAuth.signInWithEmailAndPassword(email, password) //signs in if validations pass
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        startActivity(new Intent(getApplicationContext(), GardenListActivity.class)); //goes to Garden List if sign in is successful
-                                        finish();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Authentication Error", Toast.LENGTH_SHORT).show(); //error message if sign in fails
-                                    }
-                                }
-                            });
+                    loginUser();
                 }
             });
         }
     }
 
-    private void startValidations(String email, String password) {
+    private void loginUser() {
+        //variables for validation checks
+        String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
+        String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
+
         //calling the TextInputLayout allows you to show an error at the bottom of the text field instead of having it pop up on the side
         final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
         final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
 
+        //start validations
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             errorEmail.setError("Invalid Email Address"); //error message
             emailEdit.requestFocus(); //Will focus the email field when an error is thrown so that the user can change it
-            return; //Return so the app does not crash when there is more than one error
+            return;
         } else {
             errorEmail.setError(null); //Must have else and set error to null in order to remove a previous error message
         }
@@ -93,6 +80,20 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             errorPass.setError(null);
         }
+        //end validations
+        
+        mAuth.signInWithEmailAndPassword(email, password) //signs in if validations pass
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(getApplicationContext(), GardenListActivity.class)); //goes to Garden List if sign in is successful
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Authentication Failed", Toast.LENGTH_SHORT).show(); //error message if sign in fails
+                        }
+                    }
+                });
     }
 
     //method for sign up button
