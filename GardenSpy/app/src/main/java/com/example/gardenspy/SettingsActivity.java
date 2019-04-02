@@ -55,14 +55,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String temp = Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue()).toString();
-                tempLabel.setText(temp);
+                String temp = Objects.requireNonNull(dataSnapshot.child("temp").child("threshold").getValue()).toString();
+                tempLabel.setText(String.format("%s F", temp));
 
-                String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("current").getValue()).toString();
-                moistLabel.setText(moisture);
+                String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("threshold").getValue()).toString();
+                moistLabel.setText(String.format("%s %%", moisture));
 
-                String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
-                humidityLabel.setText(humidity);
+                String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("threshold").getValue()).toString();
+                humidityLabel.setText(String.format("%s %%", humidity));
 
                 //String on = Objects.requireNonNull(dataSnapshot.child("on").child("current").getValue()).toString();
                 //onLabel.setText(on);
@@ -97,15 +97,15 @@ public class SettingsActivity extends AppCompatActivity {
                 tempLabel.setText(tempEdit);
                 rootRef.setValue(tempEdit);
 
-                EditText light_onEdit = findViewById(R.id.light_onEdit);
+               /** EditText light_onEdit = findViewById(R.id.light_onEdit);
                 String onEdit =  light_onEdit.getText().toString();
                 onLabel.setText(onEdit);
-                rootRef.setValue(onEdit);
+                rootRef.setValue(onEdit); */
 
-                EditText light_offEdit = findViewById(R.id.light_offEdit);
+               /** EditText light_offEdit = findViewById(R.id.light_offEdit);
                 String offEdit =  light_offEdit.getText().toString();
                 offLabel.setText(offEdit);
-                rootRef.setValue(offEdit);
+                rootRef.setValue(offEdit);*/
             }
         });
     }
