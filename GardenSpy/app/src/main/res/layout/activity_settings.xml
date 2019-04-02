@@ -47,12 +47,24 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Settings"
+            android:textColor="@color/primeNonOpaque"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/MoistureThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Moisture Threshold:"
+            android:text="Moisture Threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
-            android:visibility="visible" />
+            android:textColor="@color/primeNonOpaque"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,15 +73,15 @@
 
             <TextView
                 android:id="@+id/moistThreshLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="moistLabel"
+                android:textSize="20sp"
                 tools:text="moistureLabel" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="65dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/moistureEdit"
@@ -82,9 +94,11 @@
             android:id="@+id/TempThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temperature Threshold:"
+            android:text="Temperature Threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
-            android:visibility="visible" />
+            android:textColor="@color/primeNonOpaque"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,15 +107,15 @@
 
             <TextView
                 android:id="@+id/tempThreshLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="tempLabel"
+                android:textSize="20sp"
                 tools:text="tempLabel" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="65dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/tempEdit"
@@ -114,9 +128,11 @@
             android:id="@+id/Light_OnThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="On Threshold:"
+            android:text="On Threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
-            android:visibility="visible" />
+            android:textColor="@color/primeNonOpaque"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,15 +141,15 @@
 
             <TextView
                 android:id="@+id/onThreshLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="onLabel"
+                android:textSize="20sp"
                 tools:text="onLabel" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="65dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/light_onEdit"
@@ -146,9 +162,11 @@
             android:id="@+id/Light_OffThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Off Threshold:"
+            android:text="Off Threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
-            android:visibility="visible" />
+            android:textColor="@color/primeNonOpaque"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,16 +175,16 @@
 
             <TextView
                 android:id="@+id/offThreshLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="offLabel"
+                android:textSize="20sp"
                 android:visibility="visible"
                 tools:text="offLabel" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="65dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/light_offEdit"
@@ -180,7 +198,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Humidity Threshold"
-            android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2" />
+            android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/primeNonOpaque"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -189,15 +210,15 @@
 
             <TextView
                 android:id="@+id/humidityThreshLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="humidityLabel"
+                android:textSize="20sp"
                 tools:text="humidityLabel" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="65dp"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/humidityEdit"
@@ -219,9 +240,8 @@
                 android:text="Power On/Off" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="104dp"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/saveEdits"
