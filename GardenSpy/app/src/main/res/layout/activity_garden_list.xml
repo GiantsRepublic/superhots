@@ -33,12 +33,12 @@
 
             <ImageView
                 android:id="@+id/garden_button"
+                android:contentDescription="@null"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
                 android:onClick="openDetailsPage"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_gardenspyicon"
-                android:contentDescription="@null" />
+                app:srcCompat="@drawable/ic_gardenspyicon" />
 
         </TableRow>
 
@@ -50,10 +50,10 @@
                 android:id="@+id/add_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@null"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
-                app:srcCompat="@drawable/ic_add_circle_black_24dp"
-                android:contentDescription="@null" />
+                app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/button"
@@ -74,7 +74,6 @@
                 tools:layout_editor_absoluteY="0dp" />
         </TableRow>
     </TableLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

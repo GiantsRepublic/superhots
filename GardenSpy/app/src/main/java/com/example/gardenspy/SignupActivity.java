@@ -7,8 +7,6 @@
 package com.example.gardenspy;
 
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -22,6 +20,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; //connect to Firebase
@@ -113,7 +114,7 @@ public class SignupActivity extends AppCompatActivity {
                                     startActivity(new Intent(getApplicationContext(),LoginActivity.class)); //Go to Login if Registration is successful.
                                     finish();
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "Unable to Register",Toast.LENGTH_SHORT).show(); //Error message if Registration fails.
+                                    Toast.makeText(getApplicationContext(), "Unable to Register", Toast.LENGTH_SHORT).show(); //Error message if Registration fails.
                                 }
                             }
                         });

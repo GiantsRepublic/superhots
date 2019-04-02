@@ -46,50 +46,65 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String date = Objects.requireNonNull(dataSnapshot.child("date").child("current").getValue()).toString();
-                dateLabel.setText(date);
+                if (dataSnapshot.child("date").child("current").getValue() != null) {
+                    String date = Objects.requireNonNull(dataSnapshot.child("date").child("current").getValue()).toString();
+                    dateLabel.setText(date);
+                }
 
-                String time = Objects.requireNonNull(dataSnapshot.child("time").child("current").getValue()).toString();
-                timeLabel.setText(time);
+                if (dataSnapshot.child("time").child("current").getValue() != null) {
+                    String time = Objects.requireNonNull(dataSnapshot.child("time").child("current").getValue()).toString();
+                    timeLabel.setText(time);
+                }
 
-                String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
-                humLabel.setText(String.format("%s %%", humidity));
+                if (dataSnapshot.child("humid").child("current").getValue() != null) {
+                    String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
+                    humLabel.setText(String.format("%s %%", humidity));
+                }
 
-                String vapor = Objects.requireNonNull(dataSnapshot.child("actualvapor").child("current").getValue()).toString();
-                vaporLabel.setText(String.format("%s mb", vapor));
+                if (dataSnapshot.child("actualvapor").child("current").getValue() != null) {
+                    String vapor = Objects.requireNonNull(dataSnapshot.child("actualvapor").child("current").getValue()).toString();
+                    vaporLabel.setText(String.format("%s mb", vapor));
+                }
 
-                String dew = Objects.requireNonNull(dataSnapshot.child("dewpoint").child("current").getValue()).toString();
-                dewLabel.setText(String.format("%s F", dew));
+                if (dataSnapshot.child("dewpoint").child("current").getValue() != null) {
+                    String dew = Objects.requireNonNull(dataSnapshot.child("dewpoint").child("current").getValue()).toString();
+                    dewLabel.setText(String.format("%s F", dew));
+                }
 
-                String satVap = Objects.requireNonNull(dataSnapshot.child("saturatedvapor").child("current").getValue()).toString();
-                satVapLabel.setText(String.format("%s mb", satVap));
+                if (dataSnapshot.child("saturatedvapor").child("current").getValue() != null) {
+                    String satVap = Objects.requireNonNull(dataSnapshot.child("saturatedvapor").child("current").getValue()).toString();
+                    satVapLabel.setText(String.format("%s mb", satVap));
+                }
 
-                String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("current").getValue()).toString();
-                moistLabel.setText(String.format("%s %%", moisture));
+                if (dataSnapshot.child("moisture").child("current").getValue() != null) {
+                    String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("current").getValue()).toString();
+                    moistLabel.setText(String.format("%s %%", moisture));
+                }
 
-                String temp = Objects.requireNonNull(Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue())).toString();
-                tempLabel.setText(String.format("%s F", temp));
-
+                if (dataSnapshot.child("temp").child("current").getValue() != null) {
+                    String temp = Objects.requireNonNull(Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue())).toString();
+                    tempLabel.setText(String.format("%s F", temp));
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.d(TAG, databaseError.getMessage()); // Add database error message to the log if Data import fails
-                Toast.makeText(getApplicationContext(), "Unable to retrieve data",Toast.LENGTH_SHORT).show(); //Error message in app if Data import fails.
+                Toast.makeText(getApplicationContext(), "Unable to retrieve data", Toast.LENGTH_SHORT).show(); //Error message in app if Data import fails.
             }
         });
 
     }
 
     //method for settings button
-    public void openSettingsPage(View view){
+    public void openSettingsPage(View view) {
         Intent newActivity = new Intent(this, SettingsActivity.class); //opens the settings page
         startActivity(newActivity);
     }
 
-    /**method for graphs button
+    /*method for graphs button
     public void openGraphsPage(View view){
-        Intent newActivity = new Intent(this, SettingsActivity.class); //opens the sign up page
+        Intent newActivity = new Intent(this, GraphsActivity.class); //opens the graphs page
         startActivity(newActivity);
     }*/
 

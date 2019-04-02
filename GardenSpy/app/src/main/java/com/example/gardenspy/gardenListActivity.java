@@ -1,13 +1,13 @@
 package com.example.gardenspy;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class gardenListActivity extends AppCompatActivity {
 
@@ -18,18 +18,18 @@ public class gardenListActivity extends AppCompatActivity {
     }
 
 
-    public void openDetailsPage(View view){
+    public void openDetailsPage(View view) {
         Intent newActivity = new Intent(this, DetailsActivity.class);
         startActivity(newActivity);
     }
 
-    public void signOut(View view){
+    public void signOut(View view) {
         try {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(getApplicationContext(), "Signed Out", Toast.LENGTH_SHORT).show();
             Intent newActivity = new Intent(this, LoginActivity.class);
             startActivity(newActivity);
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Sign Out Error", Toast.LENGTH_SHORT).show();
         }
 

@@ -1,30 +1,30 @@
 package com.example.gardenspy;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import android.widget.CompoundButton;
-import android.widget.Toast;
-import android.widget.ToggleButton;
-
 import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
     private static final String TAG = SettingsActivity.class.getSimpleName();
-    // --Commented out by Inspection (4/1/2019 9:36 PM):private static boolean powerState;
+    private static boolean powerState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,38 +43,49 @@ public class SettingsActivity extends AppCompatActivity {
         final DatabaseReference rootRef = database.getReference("user/key/plants/reaper");
 
 
-        /**ToggleButton toggle = findViewById(R.id.PowerButton);
+        ToggleButton toggle = findViewById(R.id.PowerButton);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 powerState = isChecked;
             }
-        });*/
+        });
+
 
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String temp = Objects.requireNonNull(dataSnapshot.child("temp").child("threshold").getValue()).toString();
-                tempLabel.setText(String.format("%s F", temp));
+                if (dataSnapshot.child("temp").child("threshold").getValue() != null) {
+                    String temp = Objects.requireNonNull(dataSnapshot.child("temp").child("threshold").getValue()).toString();
+                    tempLabel.setText(String.format("%s F", temp));
+                }
 
-                String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("threshold").getValue()).toString();
-                moistLabel.setText(String.format("%s %%", moisture));
+                if (dataSnapshot.child("moisture").child("threshold").getValue() != null) {
+                    String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("threshold").getValue()).toString();
+                    moistLabel.setText(String.format("%s %%", moisture));
+                }
 
-                String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("threshold").getValue()).toString();
-                humidityLabel.setText(String.format("%s %%", humidity));
+                if (dataSnapshot.child("humid").child("threshold").getValue() != null) {
+                    String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("threshold").getValue()).toString();
+                    humidityLabel.setText(String.format("%s %%", humidity));
+                }
 
-                //String on = Objects.requireNonNull(dataSnapshot.child("on").child("current").getValue()).toString();
-                //onLabel.setText(on);
+                if (dataSnapshot.child("on").child("current").getValue() != null) {
+                    String on = Objects.requireNonNull(dataSnapshot.child("on").child("threshold").getValue()).toString();
+                    onLabel.setText(on);
+                }
 
-                //String off = Objects.requireNonNull(dataSnapshot.child("off").child("current").getValue()).toString();
-                //offLabel.setText(off);
+                if (dataSnapshot.child("off").child("current").getValue() != null) {
+                    String off = Objects.requireNonNull(dataSnapshot.child("off").child("threshold").getValue()).toString();
+                    offLabel.setText(off);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.d(TAG, databaseError.getMessage()); // Add database error message to the log if Data import fails
-                Toast.makeText(getApplicationContext(), "Unable to retrieve data",Toast.LENGTH_SHORT).show(); //Error message in app if Data import fails.
+                Toast.makeText(getApplicationContext(), "Unable to retrieve data", Toast.LENGTH_SHORT).show(); //Error message in app if Data import fails.
             }
         });
 
@@ -83,42 +94,45 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText moistureEdit = findViewById(R.id.moistureEdit);
-                String moistEdit =  moistureEdit.getText().toString();
+                String moistEdit = moistureEdit.getText().toString();
                 moistLabel.setText(moistEdit);
-                rootRef.setValue(moistEdit);
+                int moistValue = Integer.parseInt(moistEdit);
+                rootRef.child("moisture").child("threshold").setValue(moistValue);
 
                 EditText humidityEdit = findViewById(R.id.humidityEdit);
-                String humidEdit =  humidityEdit.getText().toString();
+                String humidEdit = humidityEdit.getText().toString();
                 humidityLabel.setText(humidEdit);
-                rootRef.setValue(humidEdit);
+                int humidValue = Integer.parseInt(humidEdit);
+                rootRef.child("humid").child("threshold").setValue(humidValue);
 
                 EditText temperatureEdit = findViewById(R.id.tempEdit);
-                String tempEdit =  temperatureEdit.getText().toString();
+                String tempEdit = temperatureEdit.getText().toString();
                 tempLabel.setText(tempEdit);
-                rootRef.setValue(tempEdit);
+                int tempValue = Integer.parseInt(tempEdit);
+                rootRef.child("temp").child("threshold").setValue(tempValue);
 
-               /** EditText light_onEdit = findViewById(R.id.light_onEdit);
-                String onEdit =  light_onEdit.getText().toString();
-                onLabel.setText(onEdit);
-                rootRef.setValue(onEdit); */
+                /*EditText light_onEdit = findViewById(R.id.light_onEdit);
+                 String onEdit =  light_onEdit.getText().toString();
+                 onLabel.setText(onEdit);
+                 rootRef.setValue(onEdit); */
 
-               /** EditText light_offEdit = findViewById(R.id.light_offEdit);
-                String offEdit =  light_offEdit.getText().toString();
-                offLabel.setText(offEdit);
-                rootRef.setValue(offEdit);*/
+                /* EditText light_offEdit = findViewById(R.id.light_offEdit);
+                 String offEdit =  light_offEdit.getText().toString();
+                 offLabel.setText(offEdit);
+                 rootRef.setValue(offEdit);*/
             }
         });
     }
 
     //method for settings button
-    public void openDetailsPage(View view){
+    public void openDetailsPage(View view) {
         Intent newActivity = new Intent(this, DetailsActivity.class); //opens the details page
         startActivity(newActivity);
     }
 
-    /**method for graphs button
+    /*method for graphs button
      public void openGraphsPage(View view){
-     Intent newActivity = new Intent(this, SettingsActivity.class); //opens the sign up page
+     Intent newActivity = new Intent(this, GraphsActivity.class); //opens the graphs page
      startActivity(newActivity);
      }*/
 }

@@ -6,8 +6,6 @@
 
 package com.example.gardenspy;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; //connect to Firebase
     private EditText emailEdit, passwordEdit; //EditText variables in order to strings later
@@ -33,11 +34,10 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //Grabs the current user in Firebase the app is signed in on. If there isn't any it returns null
         super.onCreate(savedInstanceState);
 
-        if(user != null){ //if there is a user signed in, it skips the login activity and goes into Garden List
+        if (user != null) { //if there is a user signed in, it skips the login activity and goes into Garden List
             Intent newActivity = new Intent(this, gardenListActivity.class);
             startActivity(newActivity);
-        }
-        else { //when there is no user logged in
+        } else { //when there is no user logged in
             setContentView(R.layout.activity_login);
 
             //put the input text into EditText variables to convert into strings.
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //method for sign up button
-    public void openSignUpPage(View view){
+    public void openSignUpPage(View view) {
         Intent newActivity = new Intent(this, SignupActivity.class); //opens the sign up page
         startActivity(newActivity);
     }
