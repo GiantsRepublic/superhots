@@ -39,4 +39,5 @@
     <string name="humiditylabel">humidityLabel</string>
     <string name="power_on_off">Power On/Off</string>
     <string name="save_edits">Save Edits</string>
+    <string name="title_activity_graphs">GraphsActivity</string>
 </resources>

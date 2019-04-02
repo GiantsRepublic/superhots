@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gardenspy">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -15,10 +14,10 @@
         android:roundIcon="@drawable/ic_gardenspyicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".GraphsActivity" />
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".gardenListActivity" />
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".GardenListActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -28,4 +27,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

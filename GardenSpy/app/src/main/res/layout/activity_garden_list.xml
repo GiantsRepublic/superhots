@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gardenListActivity">
+    tools:context=".GardenListActivity">
 
     <TextView
         android:id="@+id/textViewYourGarden"
@@ -32,7 +32,6 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/garden_button"
                 android:contentDescription="@null"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
@@ -47,7 +46,6 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/add_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@null"
@@ -65,7 +63,6 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="signOut"
