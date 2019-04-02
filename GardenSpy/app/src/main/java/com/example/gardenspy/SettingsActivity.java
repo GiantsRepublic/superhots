@@ -114,12 +114,12 @@ public class SettingsActivity extends AppCompatActivity {
                 /*EditText light_onEdit = findViewById(R.id.light_onEdit);
                  String onEdit =  light_onEdit.getText().toString();
                  onLabel.setText(onEdit);
-                 rootRef.setValue(onEdit); */
+                 rootRef.child("light").child("on").setValue(onEdit); */
 
                 /* EditText light_offEdit = findViewById(R.id.light_offEdit);
                  String offEdit =  light_offEdit.getText().toString();
                  offLabel.setText(offEdit);
-                 rootRef.setValue(offEdit);*/
+                 rootRef.child("light").child("off").setValue(offEdit);*/
             }
         });
     }

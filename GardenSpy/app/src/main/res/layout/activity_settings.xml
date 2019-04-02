@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:text="Controls"
+            android:text="@string/controls"
             android:visibility="visible" />
 
         <Button
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:onClick="openDetailsPage"
-            android:text="Details"
+            android:text="@string/details"
             android:visibility="visible" />
 
         <Button
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:text="Graphs"
+            android:text="@string/graphs"
             android:visibility="visible" />
     </LinearLayout>
 
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Settings"
+            android:text="@string/settings"
             android:textColor="@color/primeNonOpaque"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -60,7 +60,7 @@
             android:id="@+id/MoistureThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Moisture Threshold"
+            android:text="@string/moisture_threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
@@ -75,27 +75,35 @@
                 android:id="@+id/moistThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="moistLabel"
-                android:textSize="20sp"
-                tools:text="moistureLabel" />
+                android:text="@string/moistlabel"
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="65dp"
                 android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/moistureEdit"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/moistureEditLayout"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:hint="edit here"
-                android:inputType="number" />
+                android:layout_height="wrap_content" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/moistureEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_here"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <TextView
             android:id="@+id/TempThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temperature Threshold"
+            android:text="@string/temperature_threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
@@ -110,7 +118,7 @@
                 android:id="@+id/tempThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="tempLabel"
+                android:text="@string/templabel"
                 android:textSize="20sp"
                 tools:text="tempLabel" />
 
@@ -118,19 +126,30 @@
                 android:layout_width="65dp"
                 android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/tempEdit"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TempEditLayout"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:hint="edit here"
-                android:inputType="number" />
+                android:layout_height="wrap_content" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/tempEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_here"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <TextView
             android:id="@+id/Light_OnThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="On Threshold"
+            android:text="@string/on_threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
@@ -145,7 +164,7 @@
                 android:id="@+id/onThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="onLabel"
+                android:text="@string/onlabel"
                 android:textSize="20sp"
                 tools:text="onLabel" />
 
@@ -153,19 +172,29 @@
                 android:layout_width="65dp"
                 android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/light_onEdit"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/light_onEditLayout"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:hint="edit here"
-                android:inputType="number" />
+                android:layout_height="wrap_content" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/light_onEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_here"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <TextView
             android:id="@+id/Light_OffThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Off Threshold"
+            android:text="@string/off_threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
@@ -180,7 +209,7 @@
                 android:id="@+id/offThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="offLabel"
+                android:text="@string/offlabel"
                 android:textSize="20sp"
                 android:visibility="visible"
                 tools:text="offLabel" />
@@ -189,19 +218,29 @@
                 android:layout_width="65dp"
                 android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/light_offEdit"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/light_offEditLayout"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:hint="edit here"
-                android:inputType="number" />
+                android:layout_height="wrap_content" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/light_offEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_here"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <TextView
             android:id="@+id/HumidityThreshold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Humidity Threshold"
+            android:text="@string/humidity_threshold"
             android:textAppearance="@style/Base.TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="@color/primeNonOpaque"
             android:textSize="20sp"
@@ -216,7 +255,7 @@
                 android:id="@+id/humidityThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="humidityLabel"
+                android:text="@string/humiditylabel"
                 android:textSize="20sp"
                 tools:text="humidityLabel" />
 
@@ -224,12 +263,22 @@
                 android:layout_width="65dp"
                 android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/humidityEdit"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/humidityEditLayout"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:hint="edit here"
-                android:inputType="number" />
+                android:layout_height="wrap_content" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/humidityEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_here"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -242,7 +291,7 @@
                 android:id="@+id/PowerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Power On/Off" />
+                android:text="@string/power_on_off" />
 
             <Space
                 android:layout_width="100dp"
@@ -252,7 +301,7 @@
                 android:id="@+id/saveEdits"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save Edits" />
+                android:text="@string/save_edits" />
         </LinearLayout>
 
     </LinearLayout>
