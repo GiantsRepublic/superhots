@@ -108,7 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
                 onEdit = String.valueOf(value);
             }
             onLabel.setText(onEdit);
-            rootRef.child("timer").child("light_on").setValue(onEdit);
+            rootRef.child("timer").child("light_on").setValue(value);
         }
 
         EditText light_offEdit = findViewById(R.id.light_offEdit);
@@ -120,7 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
                 offEdit = String.valueOf(value);
             }
             offLabel.setText(offEdit);
-            rootRef.child("timer").child("light_off").setValue(offEdit);
+            rootRef.child("timer").child("light_off").setValue(value);
         }
 
     }
