@@ -74,33 +74,45 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setValues(DatabaseReference rootRef, TextView moistLabel, TextView humidityLabel, TextView tempLabel, TextView onLabel, TextView offLabel) {
+
         EditText moistureEdit = findViewById(R.id.moistureEdit);
-        String moistEdit = moistureEdit.getText().toString();
-        moistLabel.setText(moistEdit);
-        int moistValue = Integer.parseInt(moistEdit);
-        rootRef.child("moisture").child("threshold").setValue(moistValue);
+        if (!moistureEdit.getText().toString().isEmpty()) {
+            String moistEdit = moistureEdit.getText().toString();
+            moistLabel.setText(moistEdit);
+            int moistValue = Integer.parseInt(moistEdit);
+            rootRef.child("moisture").child("threshold").setValue(moistValue);
+        }
 
         EditText humidityEdit = findViewById(R.id.humidityEdit);
-        String humidEdit = humidityEdit.getText().toString();
-        humidityLabel.setText(humidEdit);
-        int humidValue = Integer.parseInt(humidEdit);
-        rootRef.child("humid").child("threshold").setValue(humidValue);
+        if (!humidityEdit.getText().toString().isEmpty()) {
+            String humidEdit = humidityEdit.getText().toString();
+            humidityLabel.setText(humidEdit);
+            int humidValue = Integer.parseInt(humidEdit);
+            rootRef.child("humid").child("threshold").setValue(humidValue);
+        }
 
         EditText temperatureEdit = findViewById(R.id.tempEdit);
-        String tempEdit = temperatureEdit.getText().toString();
-        tempLabel.setText(tempEdit);
-        int tempValue = Integer.parseInt(tempEdit);
-        rootRef.child("temp").child("threshold").setValue(tempValue);
+        if (!temperatureEdit.getText().toString().isEmpty()) {
+            String tempEdit = temperatureEdit.getText().toString();
+            tempLabel.setText(tempEdit);
+            int tempValue = Integer.parseInt(tempEdit);
+            rootRef.child("temp").child("threshold").setValue(tempValue);
+        }
 
-        /*EditText light_onEdit = findViewById(R.id.light_onEdit);
-        String onEdit =  light_onEdit.getText().toString();
-        onLabel.setText(onEdit);
-        rootRef.child("light").child("on").setValue(onEdit);
+        EditText light_onEdit = findViewById(R.id.light_onEdit);
+        if (!light_onEdit.getText().toString().isEmpty()) {
+            String onEdit = light_onEdit.getText().toString();
+            onLabel.setText(onEdit);
+            rootRef.child("timer").child("light_on").setValue(onEdit);
+        }
 
         EditText light_offEdit = findViewById(R.id.light_offEdit);
-        String offEdit =  light_offEdit.getText().toString();
-        offLabel.setText(offEdit);
-        rootRef.child("light").child("off").setValue(offEdit);*/
+        if (!light_offEdit.getText().toString().isEmpty()) {
+            String offEdit = light_offEdit.getText().toString();
+            offLabel.setText(offEdit);
+            rootRef.child("timer").child("light_off").setValue(offEdit);
+        }
+
     }
 
     private void getValues(@NonNull DataSnapshot dataSnapshot, TextView tempLabel, TextView moistLabel, TextView humidityLabel, TextView onLabel, TextView offLabel) {
@@ -119,13 +131,13 @@ public class SettingsActivity extends AppCompatActivity {
             humidityLabel.setText(String.format("%s %%", humidity));
         }
 
-        if (dataSnapshot.child("on").child("current").getValue() != null) {
-            String on = Objects.requireNonNull(dataSnapshot.child("on").child("threshold").getValue()).toString();
+        if (dataSnapshot.child("timer").child("light_on").getValue() != null) {
+            String on = Objects.requireNonNull(dataSnapshot.child("timer").child("light_on").getValue()).toString();
             onLabel.setText(on);
         }
 
-        if (dataSnapshot.child("off").child("current").getValue() != null) {
-            String off = Objects.requireNonNull(dataSnapshot.child("off").child("threshold").getValue()).toString();
+        if (dataSnapshot.child("timer").child("light_off").getValue() != null) {
+            String off = Objects.requireNonNull(dataSnapshot.child("timer").child("light_off").getValue()).toString();
             offLabel.setText(off);
         }
     }
@@ -137,8 +149,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     //method for graphs button
-     public void openGraphsPage(View view){
-     Intent newActivity = new Intent(this, GraphsActivity.class); //opens the graphs page
-     startActivity(newActivity);
-     }
+    public void openGraphsPage(View view) {
+        Intent newActivity = new Intent(this, GraphsActivity.class); //opens the graphs page
+        startActivity(newActivity);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.gardenspy;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -70,6 +71,19 @@ public class DetailsActivity extends AppCompatActivity {
 
         if (dataSnapshot.child("humid").child("current").getValue() != null) {
             String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
+
+            if (dataSnapshot.child("humid").child("threshold").getValue() != null) {
+                String threshold = Objects.requireNonNull(dataSnapshot.child("humid").child("threshold").getValue()).toString();
+                int humid = Integer.parseInt(humidity);
+                int thresh = Integer.parseInt(threshold);
+                int defaultColor = humLabel.getTextColors().getDefaultColor();
+                if (humid > thresh) {
+                    humLabel.setTextColor(Color.RED);
+                } else {
+                    humLabel.setTextColor(defaultColor);
+                }
+            }
+
             humLabel.setText(String.format("%s %%", humidity));
         }
 
@@ -90,12 +104,38 @@ public class DetailsActivity extends AppCompatActivity {
 
         if (dataSnapshot.child("moisture").child("current").getValue() != null) {
             String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("current").getValue()).toString();
+
+            if (dataSnapshot.child("moisture").child("threshold").getValue() != null) {
+                String threshold = Objects.requireNonNull(dataSnapshot.child("moisture").child("threshold").getValue()).toString();
+                int moist = Integer.parseInt(moisture);
+                int thresh = Integer.parseInt(threshold);
+                int defaultColor = moistLabel.getTextColors().getDefaultColor();
+                if (moist > thresh) {
+                    moistLabel.setTextColor(Color.RED);
+                } else {
+                    moistLabel.setTextColor(defaultColor);
+                }
+            }
+
             moistLabel.setText(String.format("%s %%", moisture));
         }
 
         if (dataSnapshot.child("temp").child("current").getValue() != null) {
-            String temp = Objects.requireNonNull(Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue())).toString();
-            tempLabel.setText(String.format("%s F", temp));
+            String temperature = Objects.requireNonNull(Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue())).toString();
+
+            if (dataSnapshot.child("temp").child("threshold").getValue() != null) {
+                String threshold = Objects.requireNonNull(dataSnapshot.child("temp").child("threshold").getValue()).toString();
+                int temp = Integer.parseInt(temperature);
+                int thresh = Integer.parseInt(threshold);
+                int defaultColor = tempLabel.getTextColors().getDefaultColor();
+                if (temp > thresh) {
+                    tempLabel.setTextColor(Color.RED);
+                } else {
+                    tempLabel.setTextColor(defaultColor);
+                }
+            }
+
+            tempLabel.setText(String.format("%s F", temperature));
         }
     }
 
@@ -106,7 +146,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     //method for graphs button
-    public void openGraphsPage(View view){
+    public void openGraphsPage(View view) {
         Intent newActivity = new Intent(this, GraphsActivity.class); //opens the graphs page
         startActivity(newActivity);
     }
