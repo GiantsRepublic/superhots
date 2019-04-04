@@ -110,7 +110,7 @@ public class DetailsActivity extends AppCompatActivity {
                 int moist = Integer.parseInt(moisture);
                 int thresh = Integer.parseInt(threshold);
                 int defaultColor = moistLabel.getTextColors().getDefaultColor();
-                if (moist > thresh) {
+                if (moist < thresh) {
                     moistLabel.setTextColor(Color.RED);
                 } else {
                     moistLabel.setTextColor(defaultColor);
