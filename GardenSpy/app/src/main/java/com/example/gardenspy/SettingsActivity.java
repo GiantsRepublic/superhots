@@ -102,6 +102,11 @@ public class SettingsActivity extends AppCompatActivity {
         EditText light_onEdit = findViewById(R.id.light_onEdit);
         if (!light_onEdit.getText().toString().isEmpty()) {
             String onEdit = light_onEdit.getText().toString();
+            int value = Integer.parseInt(onEdit);
+            if(value > 24){
+                value = 24;
+                onEdit = String.valueOf(value);
+            }
             onLabel.setText(onEdit);
             rootRef.child("timer").child("light_on").setValue(onEdit);
         }
@@ -109,6 +114,11 @@ public class SettingsActivity extends AppCompatActivity {
         EditText light_offEdit = findViewById(R.id.light_offEdit);
         if (!light_offEdit.getText().toString().isEmpty()) {
             String offEdit = light_offEdit.getText().toString();
+            int value = Integer.parseInt(offEdit);
+            if(value > 24){
+                value = 24;
+                offEdit = String.valueOf(value);
+            }
             offLabel.setText(offEdit);
             rootRef.child("timer").child("light_off").setValue(offEdit);
         }
