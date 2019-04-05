@@ -12,6 +12,12 @@ import RPi.GPIO as GPIO
 from Threshold import Threshold
 from CurrentEnvironment import CurrentEnvironment
 
+# Import Firebase library
+from firebase import firebase
+
+# Firebase Database Reference
+fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
+
 # Hardware GPIO configuration
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -35,18 +41,18 @@ print('----------------------')
 
 while True:
     
-    #th.getThreshold()
-    ce.checkCurrent()
+    #th.checkThreshold(fb)
+    ce.checkCurrent(fb)
                                                                      
     # Check Soil Moisture
     if ce.getMoist() <= th.getMoistThresh():
         # Moisture state
         print('Moisture - LOW')
         # Turn on/off water pump
-        GPIO.output(23, False)
+        #GPIO.output(23, False)
         print('WATER PUMP - ON')
         time.sleep(3)    # 3 second water cycle 
-        GPIO.output(23, True)
+        #GPIO.output(23, True)
         print('WATER PUMP - OFF')
         
     else:

@@ -3,10 +3,10 @@
 # Initiate Thresholds and Check/Set Threshold Changes
 
 # Import Firebase library
-from firebase import firebase
+#from firebase import firebase
 
 # Firebase Database Reference
-fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
+#fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
 
 class Threshold:
     
@@ -18,13 +18,13 @@ class Threshold:
         self.time_on = 7
         self.time_off = 19
         
-    #def checkThreshold(self):
+    #def checkThreshold(self,fb):
         
-        #self.temp_threshold = fb.get('user/key/plants/reaper/temp/', 'threshold')
-        #self.humid_threshold = fb.get('user/key/plants/reaper/humid/', 'threshold')
-        #self.moist_threshold = fb.get('user/key/plants/reaper/moist/', 'threshold')
-        #self.light_on = fb.get('user/key/plants/reaper/timer/', 'light_on' )
-        #self.light_off = fb.get('user/key/plants/reaper/timer/', 'light_off')
+        #self.temp_threshold = fb.get('/user/key/plants/reaper/temp', 'threshold')
+        #self.humid_threshold = fb.get('/user/key/plants/reaper/humid', 'threshold')
+        #self.moist_threshold = fb.get('/user/key/plants/reaper/moisture', 'threshold')
+        #self.time_on = fb.get('/user/key/plants/reaper/timer', 'light_on' )
+        #self.time_off = fb.get('/user/key/plants/reaper/timer', 'light_off')
         
     def getTempThresh(self):
         

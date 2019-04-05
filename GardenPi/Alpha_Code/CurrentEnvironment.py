@@ -3,7 +3,7 @@
 # This class get current values in the enviorment
 
 # Import Firebase library 
-from firebase import firebase
+#from firebase import firebase
 
 # Math library
 import math
@@ -24,7 +24,7 @@ SPI_DEVICE = 0
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
 # Firebase Database Reference
-fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
+#fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
 
 class CurrentEnvironment:
         
@@ -38,7 +38,7 @@ class CurrentEnvironment:
         self.dew_f = 0
         self.current_hour = 0
             
-    def checkCurrent(self):
+    def checkCurrent(self,fb):
             
         # Temperature and Humidity (DHT11)
         valid = 1
