@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,10 +52,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void signUpUser() {
         //variables for validation checks
-        String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
-        String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
-        String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
-        String passwordRepeat = passwordMatch.getText().toString().trim(); //gets the password repeat and converts it into a string and trims any extra spaces
+        final String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
+        final String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
+        final String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
+        final String passwordRepeat = passwordMatch.getText().toString().trim(); //gets the password repeat and converts it into a string and trims any extra spaces
         //calling the TextInputLayout allows you to show an error at the bottom of the text field instead of having it pop up on the side
         final TextInputLayout errorName = findViewById(R.id.text_input_name); //For proper Error Message in Name field.
         final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
@@ -109,19 +110,30 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             errorPassRepeat.setError(null);
         }
+
+        mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+            @Override
+            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                if (task.getResult().getSignInMethods().size() == 0){
+                    mAuth.createUserWithEmailAndPassword(email, password) //creates the user if the validations pass
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Login if Registration is successful.
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Unable to Register", Toast.LENGTH_SHORT).show(); //Error message if Registration fails.
+                                    }
+                                }
+                            });
+                }else{
+                    errorEmail.setError("Email already exists");
+                }
+            }
+        });
         //end validations
 
-        mAuth.createUserWithEmailAndPassword(email, password) //creates the user if the validations pass
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Login if Registration is successful.
-                            finish();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Unable to Register", Toast.LENGTH_SHORT).show(); //Error message if Registration fails.
-                        }
-                    }
-                });
+
     }
 }

@@ -5,4 +5,5 @@
     <color name="colorAccent">#473A6FA6</color>
     <color name="SignUpIcon">#D3D3D3</color>
     <color name="primeNonOpaque">#3A6FA6</color>
+    <color name="colorAccentButton">#3A6FA6</color>
 </resources>
