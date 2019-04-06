@@ -75,8 +75,9 @@
                 android:textSize="20sp" />
 
             <Space
-                android:layout_width="65dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="100dp"
@@ -117,8 +118,9 @@
                 tools:text="tempLabel" />
 
             <Space
-                android:layout_width="65dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -161,8 +163,9 @@
                 tools:text="onLabel" />
 
             <Space
-                android:layout_width="65dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="100dp"
@@ -205,8 +208,9 @@
                 tools:text="offLabel" />
 
             <Space
-                android:layout_width="65dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="100dp"
@@ -248,8 +252,9 @@
                 tools:text="humidityLabel" />
 
             <Space
-                android:layout_width="65dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="100dp"
@@ -278,16 +283,19 @@
                 android:id="@+id/PowerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:text="@string/power_on_off" />
 
             <Space
-                android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/saveEdits"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:text="@string/save_edits" />
         </LinearLayout>
 
