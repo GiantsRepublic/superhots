@@ -32,116 +32,120 @@
         app:autoSizeTextType="uniform"
         app:fontFamily="cursive" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <AutoCompleteTextView
-                android:id="@+id/name"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableStart="@drawable/ic_person_black_24dp"
-                android:drawablePadding="10dp"
-                android:hint="@string/name"
-                android:inputType="textPersonName"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:passwordToggleDrawable="@drawable/visibility_selector"
+                app:passwordToggleEnabled="true">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <AutoCompleteTextView
-                android:id="@+id/email"
+                <AutoCompleteTextView
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/password"
+                    android:imeActionId="6"
+                    android:imeActionLabel="@string/sign_in"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_password_repeat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableStart="@drawable/ic_email_black_24dp"
-                android:drawablePadding="10dp"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true" />
+                app:passwordToggleDrawable="@drawable/visibility_selector"
+                app:passwordToggleEnabled="true">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <AutoCompleteTextView
+                    android:id="@+id/password_repeat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/repeat_password"
+                    android:imeActionId="6"
+                    android:imeActionLabel="@string/sign_in"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleDrawable="@drawable/visibility_selector"
-            app:passwordToggleEnabled="true">
+            <Button
+                android:id="@+id/sign_up_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorAccentButtonClickable"
+                android:text="@string/sign_up"
+                android:textStyle="bold" />
 
-
-            <AutoCompleteTextView
-                android:id="@+id/password"
+            <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableStart="@drawable/ic_lock_black_24dp"
-                android:drawablePadding="10dp"
-                android:hint="@string/password"
-                android:imeActionId="6"
-                android:imeActionLabel="@string/sign_in"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:layout_marginTop="10dp" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_password_repeat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleDrawable="@drawable/visibility_selector"
-            app:passwordToggleEnabled="true">
-
-            <AutoCompleteTextView
-                android:id="@+id/password_repeat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_lock_black_24dp"
-                android:drawablePadding="10dp"
-                android:hint="@string/repeat_password"
-                android:imeActionId="6"
-                android:imeActionLabel="@string/sign_in"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/sign_up_button"
-            style="?android:textAppearanceSmall"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorAccentButtonClickable"
-            android:text="@string/sign_up"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
-
-    </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
