@@ -101,5 +101,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent newActivity = new Intent(this, SignUpActivity.class); //opens the sign up page
         startActivity(newActivity);
     }
+
+    //method for forgot password button
+    public void openForgotPasswordPage(View view) {
+        Intent newActivity = new Intent(this, ForgotPasswordActivity.class); //opens the sign up page
+        startActivity(newActivity);
+    }
 }
 
