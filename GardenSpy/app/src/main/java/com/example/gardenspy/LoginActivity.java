@@ -108,5 +108,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent newActivity = new Intent(this, ForgotPasswordActivity.class); //opens the sign up page
         startActivity(newActivity);
     }
+
+    @Override
+    public void onBackPressed(){
+        finish();
+        moveTaskToBack(true);
+    }
 }
 
