@@ -1,37 +1,46 @@
 # camera.py
 # Author: Luke Duvall
 # Timelapse
-
+import time
+time.sleep(20)
 from picamera import PiCamera
-from time import sleep
 import datetime
+from google.cloud import storage
+from firebase import firebase
+from Threshold import Threshold
+from CurrentTime import CurrentTime
 
-# Timelapse Cycle Variables (7,18)
-cam_on = 3
-cam_off = 18
+fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
+
+storage_client = storage.Client.from_service_account_json('/home/pi/superhots/GardenPi/Alpha_Code/Camera/test-76183593397d.json')
+
+bucket = storage_client.get_bucket('test-5487a.appspot.com')
 
 camera = PiCamera()
 camera.resolution = (1296,972)
 camera.rotation = 270
 
-def wait():
+# Initatiate Levels and Thresholds
+ce = CurrentTime()
+th = Threshold()
+
+while True:
     
-    current_datetime = datetime.datetime.now()
+    th.checkThreshold(fb)
+    ce.checkCurrent()
     
-    # Check Time
-    if(current_datetime.hour >= cam_on and current_datetime.hour < cam_off):
-        sleep(300)
-        
+    current_hour = datetime.datetime.now()
+    
+    timestamp = time.strftime('%m%d%Y_%H%M%S')
+    
+    if(ce.getHour() >= th.getTimeOn()+1 and ce.getHour() < th.getTimeOff()-1):
+        camera.start_preview()
+        time.sleep(2)
+        camera.capture('/home/pi/Pictures/Reaper - ' + timestamp + '.jpg')
+        time.sleep(2)
+        camera.capture('/home/pi/Pictures/currentpicture.jpg')
+        current_picture = bucket.blob('currentpicture.jpg')
+        current_picture.upload_from_filename(filename='/home/pi/Pictures/currentpicture.jpg')
+        time.sleep(30)
     else:
-        sleep(300)
-        wait()
-        
-# Start of program
-
-current_hour = datetime.datetime.now()
-
-if(current_hour.hour >= cam_on and current_hour.hour < cam_off):
-    for filename in camera.capture_continuous('/home/pi/Desktop/Camera/Pictures/Reaper - {timestamp:%m%d%Y_%H%M%S}.jpg'):
-        wait()
-else:
-    wait()
+        time.sleep(30)
