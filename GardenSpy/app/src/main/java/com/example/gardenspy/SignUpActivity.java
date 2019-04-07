@@ -21,6 +21,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
@@ -57,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void signUpUser() {
         //variables for validation checks
-        String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
+        final String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
         final String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
         final String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
         String passwordRepeat = passwordMatch.getText().toString().trim(); //gets the password repeat and converts it into a string and trims any extra spaces
@@ -125,6 +126,12 @@ public class SignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(name)
+                                                .build();
+                                        mAuth.getCurrentUser().updateProfile(profileUpdate);
+                                        mAuth.getInstance().signOut();
+                                        Toast.makeText(getApplicationContext(), "Registered", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Login if Registration is successful.
                                         finish();
                                     } else {
