@@ -22,6 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -114,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                if (task.getResult().getSignInMethods().size() == 0){
+                if (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size() == 0){
                     mAuth.createUserWithEmailAndPassword(email, password) //creates the user if the validations pass
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override

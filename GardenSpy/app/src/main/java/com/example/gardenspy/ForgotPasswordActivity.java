@@ -16,13 +16,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
+    private final String TAG = ForgotPasswordActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private EditText emailEdit;
-    private String TAG = ForgotPasswordActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                if (task.getResult().getSignInMethods().size() == 0) {
+                if (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size() == 0) {
                     errorEmail.setError("Email does not exists");
                 } else {
                     mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -79,7 +81,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
 
     //method for opening login page
-    public void openLoginPage() {
+    private void openLoginPage() {
         Intent newActivity = new Intent(this, LoginActivity.class); //opens the sign up page
         startActivity(newActivity);
     }
