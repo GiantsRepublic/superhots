@@ -26,7 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth; //connect to Firebase
+    private FirebaseAuth mAuth; //connect to FireBase
     private EditText emailEdit;
     private EditText passwordEdit; //EditText variables in order to strings later
 

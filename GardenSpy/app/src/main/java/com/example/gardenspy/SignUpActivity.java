@@ -129,8 +129,8 @@ public class SignUpActivity extends AppCompatActivity {
                                         UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
                                                 .setDisplayName(name)
                                                 .build();
-                                        mAuth.getCurrentUser().updateProfile(profileUpdate);
-                                        mAuth.getInstance().signOut();
+                                        Objects.requireNonNull(mAuth.getCurrentUser()).updateProfile(profileUpdate);
+                                        FirebaseAuth.getInstance().signOut();
                                         Toast.makeText(getApplicationContext(), "Registered", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Login if Registration is successful.
                                         finish();
