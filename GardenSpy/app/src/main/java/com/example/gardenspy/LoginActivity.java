@@ -27,7 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; //connect to Firebase
-    private EditText emailEdit, passwordEdit; //EditText variables in order to strings later
+    private EditText emailEdit;
+    private EditText passwordEdit; //EditText variables in order to strings later
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
 
         //calling the TextInputLayout allows you to show an error at the bottom of the text field instead of having it pop up on the side
-        final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
-        final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
+        TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
+        TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
 
         //start validations
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             errorEmail.setError(null); //Must have else and set error to null in order to remove a previous error message
         }
 
-        if (TextUtils.isEmpty(password) || password.length() < 6) {
+        if (TextUtils.isEmpty(password) || (password.length() < 6)) {
             errorPass.setError("Invalid Password");
             passwordEdit.requestFocus();
             return;
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             errorPass.setError(null);
         }
         //end validations
-        
+
         mAuth.signInWithEmailAndPassword(email, password) //signs in if validations pass
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

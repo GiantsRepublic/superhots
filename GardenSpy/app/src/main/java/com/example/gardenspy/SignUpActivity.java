@@ -29,7 +29,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; //connect to Firebase
-    private EditText nameEdit, emailEdit, passwordEdit, passwordMatch; //EditText variables in order to strings later
+    private EditText nameEdit;
+    private EditText emailEdit;
+    private EditText passwordEdit;
+    private EditText passwordMatch; //EditText variables in order to strings later
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +57,15 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void signUpUser() {
         //variables for validation checks
-        final String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
+        String name = nameEdit.getText().toString().trim(); //gets the name and converts it into a string and trims any extra spaces
         final String email = emailEdit.getText().toString().trim(); //gets the email and converts it into a string and trims any extra spaces
         final String password = passwordEdit.getText().toString().trim(); //gets the password and converts it into a string and trims any extra spaces
-        final String passwordRepeat = passwordMatch.getText().toString().trim(); //gets the password repeat and converts it into a string and trims any extra spaces
+        String passwordRepeat = passwordMatch.getText().toString().trim(); //gets the password repeat and converts it into a string and trims any extra spaces
         //calling the TextInputLayout allows you to show an error at the bottom of the text field instead of having it pop up on the side
-        final TextInputLayout errorName = findViewById(R.id.text_input_name); //For proper Error Message in Name field.
+        TextInputLayout errorName = findViewById(R.id.text_input_name); //For proper Error Message in Name field.
         final TextInputLayout errorEmail = findViewById(R.id.text_input_email); //For proper Error Message in Email field
-        final TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
-        final TextInputLayout errorPassRepeat = findViewById(R.id.text_input_password_repeat); //For proper Error Message in Password Repeat field
+        TextInputLayout errorPass = findViewById(R.id.text_input_password); //For proper Error Message in Password field
+        TextInputLayout errorPassRepeat = findViewById(R.id.text_input_password_repeat); //For proper Error Message in Password Repeat field
 
         //start validations
         if (TextUtils.isEmpty(name)) {
@@ -97,12 +100,12 @@ public class SignUpActivity extends AppCompatActivity {
             errorPass.setError(null);
         }
 
-        if (!TextUtils.equals(password, passwordRepeat)) {
+        if (TextUtils.equals(password, passwordRepeat)) {
+            errorPassRepeat.setError(null);
+        } else {
             errorPassRepeat.setError("Your passwords must match");
             passwordMatch.requestFocus();
             return;
-        } else {
-            errorPassRepeat.setError(null);
         }
 
         if (passwordRepeat.length() < 6) {
@@ -116,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                if (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size() == 0){
+                if (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).isEmpty()) {
                     mAuth.createUserWithEmailAndPassword(email, password) //creates the user if the validations pass
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -129,12 +132,18 @@ public class SignUpActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                }else{
+                } else {
                     errorEmail.setError("Email already exists");
                 }
             }
         });
         //end validations
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent newActivity = new Intent(this, LoginActivity.class);
+        startActivity(newActivity);
     }
 }

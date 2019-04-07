@@ -17,21 +17,32 @@ public class GardenListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_garden_list);
     }
 
-
-    public void openDetailsPage(View view) {
-        Intent newActivity = new Intent(this, DetailsActivity.class);
-        startActivity(newActivity);
-    }
-
     public void signOut(View view) {
         try {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(getApplicationContext(), "Signed Out", Toast.LENGTH_SHORT).show();
             Intent newActivity = new Intent(this, LoginActivity.class);
             startActivity(newActivity);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             Toast.makeText(getApplicationContext(), "Sign Out Error", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void openDetailsPage(View view) {
+        Intent newActivity = new Intent(this, DetailsActivity.class);
+        startActivity(newActivity);
+    }
+
+    @Override
+    public void onBackPressed() {
+        try {
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(getApplicationContext(), "Signed Out", Toast.LENGTH_SHORT).show();
+            Intent newActivity = new Intent(this, LoginActivity.class);
+            startActivity(newActivity);
+        } catch (RuntimeException e) {
+            Toast.makeText(getApplicationContext(), "Sign Out Error", Toast.LENGTH_SHORT).show();
+        }
     }
 }

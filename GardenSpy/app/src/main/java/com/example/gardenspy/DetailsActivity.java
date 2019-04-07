@@ -23,30 +23,128 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DetailsActivity extends AppCompatActivity {
     private static final String TAG = DetailsActivity.class.getSimpleName();
 
+    private static void getDate(@NonNull DataSnapshot dataSnapshot, TextView dateLabel) {
+        if (dataSnapshot.child("date").child("current").exists()) {
+            String date = Objects.requireNonNull(dataSnapshot.child("date").child("current").getValue()).toString();
+            dateLabel.setText(date);
+        }
+    }
+
+    private static void getTime(@NonNull DataSnapshot dataSnapshot, TextView timeLabel) {
+        if (dataSnapshot.child("time").child("current").exists()) {
+            String time = Objects.requireNonNull(dataSnapshot.child("time").child("current").getValue()).toString();
+            timeLabel.setText(time);
+        }
+    }
+
+    private static void getHumidity(@NonNull DataSnapshot dataSnapshot, TextView humLabel) {
+        if (dataSnapshot.child("humid").child("current").exists()) {
+            String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
+
+            if (dataSnapshot.child("humid").child("threshold").exists()) {
+                String threshold = Objects.requireNonNull(dataSnapshot.child("humid").child("threshold").getValue()).toString();
+
+                int defaultColor = humLabel.getTextColors().getDefaultColor();
+                if (Integer.parseInt(humidity) > Integer.parseInt(threshold)) {
+                    humLabel.setTextColor(Color.RED);
+                } else {
+                    humLabel.setTextColor(defaultColor);
+                }
+            }
+
+            humLabel.setText(String.format("%s %%", humidity));
+        }
+    }
+
+    private static void getVapor(@NonNull DataSnapshot dataSnapshot, TextView vaporLabel) {
+        if (dataSnapshot.child("actualvapor").child("current").exists()) {
+            String vapor = Objects.requireNonNull(dataSnapshot.child("actualvapor").child("current").getValue()).toString();
+            vaporLabel.setText(String.format("%s mb", vapor));
+        }
+    }
+
+    private static void getDewPoint(@NonNull DataSnapshot dataSnapshot, TextView dewLabel) {
+        if (dataSnapshot.child("dewpoint").child("current").exists()) {
+            String dew = Objects.requireNonNull(dataSnapshot.child("dewpoint").child("current").getValue()).toString();
+            dewLabel.setText(String.format("%s F", dew));
+        }
+    }
+
+    private static void getSaturatedVapor(@NonNull DataSnapshot dataSnapshot, TextView satVapLabel) {
+        if (dataSnapshot.child("saturatedvapor").child("current").exists()) {
+            String satVap = Objects.requireNonNull(dataSnapshot.child("saturatedvapor").child("current").getValue()).toString();
+            satVapLabel.setText(String.format("%s mb", satVap));
+        }
+    }
+
+    private static void getMoisture(@NonNull DataSnapshot dataSnapshot, TextView moistLabel) {
+        if (dataSnapshot.child("moisture").child("current").exists()) {
+            String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("current").getValue()).toString();
+
+            if (dataSnapshot.child("moisture").child("threshold").exists()) {
+                String threshold = Objects.requireNonNull(dataSnapshot.child("moisture").child("threshold").getValue()).toString();
+
+                int defaultColor = moistLabel.getTextColors().getDefaultColor();
+                if (Integer.parseInt(moisture) < Integer.parseInt(threshold)) {
+                    moistLabel.setTextColor(Color.RED);
+                } else {
+                    moistLabel.setTextColor(defaultColor);
+                }
+            }
+
+            moistLabel.setText(String.format("%s %%", moisture));
+        }
+    }
+
+    private static void getTemperature(@NonNull DataSnapshot dataSnapshot, TextView tempLabel) {
+        if (dataSnapshot.child("temp").child("current").exists()) {
+            String temperature = Objects.requireNonNull(Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue())).toString();
+
+            if (dataSnapshot.child("temp").child("threshold").exists()) {
+                String threshold = Objects.requireNonNull(dataSnapshot.child("temp").child("threshold").getValue()).toString();
+
+                int defaultColor = tempLabel.getTextColors().getDefaultColor();
+                if (Integer.parseInt(temperature) > Integer.parseInt(threshold)) {
+                    tempLabel.setTextColor(Color.RED);
+                } else {
+                    tempLabel.setTextColor(defaultColor);
+                }
+            }
+
+            tempLabel.setText(String.format("%s F", temperature));
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
         //setup text labels
+        final TextView dateLabel = findViewById(R.id.dateLabel);
         final TextView timeLabel = findViewById(R.id.timeLabel);
+        final TextView humLabel = findViewById(R.id.humLabel);
         final TextView vaporLabel = findViewById(R.id.vaporLabel);
         final TextView dewLabel = findViewById(R.id.dewLabel);
-        final TextView moistLabel = findViewById(R.id.moistLabel);
-        final TextView humLabel = findViewById(R.id.humLabel);
         final TextView satVapLabel = findViewById(R.id.satVapLabel);
+        final TextView moistLabel = findViewById(R.id.moistLabel);
         final TextView tempLabel = findViewById(R.id.tempLabel);
-        final TextView dateLabel = findViewById(R.id.dateLabel);
+
 
         //creating database instance
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference rootRef = database.getReference("user/key/plants/reaper");
-
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user/key/plants/reaper");
 
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                getValues(dataSnapshot, dateLabel, timeLabel, humLabel, vaporLabel, dewLabel, satVapLabel, moistLabel, tempLabel);
+                getDate(dataSnapshot, dateLabel);
+                getTime(dataSnapshot, timeLabel);
+                getHumidity(dataSnapshot, humLabel);
+                getVapor(dataSnapshot, vaporLabel);
+                getDewPoint(dataSnapshot, dewLabel);
+                getSaturatedVapor(dataSnapshot, satVapLabel);
+                getMoisture(dataSnapshot, moistLabel);
+                getTemperature(dataSnapshot, tempLabel);
             }
 
             @Override
@@ -56,87 +154,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void getValues(@NonNull DataSnapshot dataSnapshot, TextView dateLabel, TextView timeLabel, TextView humLabel, TextView vaporLabel, TextView dewLabel, TextView satVapLabel, TextView moistLabel, TextView tempLabel) {
-        if (dataSnapshot.child("date").child("current").getValue() != null) {
-            String date = Objects.requireNonNull(dataSnapshot.child("date").child("current").getValue()).toString();
-            dateLabel.setText(date);
-        }
-
-        if (dataSnapshot.child("time").child("current").getValue() != null) {
-            String time = Objects.requireNonNull(dataSnapshot.child("time").child("current").getValue()).toString();
-            timeLabel.setText(time);
-        }
-
-        if (dataSnapshot.child("humid").child("current").getValue() != null) {
-            String humidity = Objects.requireNonNull(dataSnapshot.child("humid").child("current").getValue()).toString();
-
-            if (dataSnapshot.child("humid").child("threshold").getValue() != null) {
-                String threshold = Objects.requireNonNull(dataSnapshot.child("humid").child("threshold").getValue()).toString();
-                int humid = Integer.parseInt(humidity);
-                int thresh = Integer.parseInt(threshold);
-                int defaultColor = humLabel.getTextColors().getDefaultColor();
-                if (humid > thresh) {
-                    humLabel.setTextColor(Color.RED);
-                } else {
-                    humLabel.setTextColor(defaultColor);
-                }
-            }
-
-            humLabel.setText(String.format("%s %%", humidity));
-        }
-
-        if (dataSnapshot.child("actualvapor").child("current").getValue() != null) {
-            String vapor = Objects.requireNonNull(dataSnapshot.child("actualvapor").child("current").getValue()).toString();
-            vaporLabel.setText(String.format("%s mb", vapor));
-        }
-
-        if (dataSnapshot.child("dewpoint").child("current").getValue() != null) {
-            String dew = Objects.requireNonNull(dataSnapshot.child("dewpoint").child("current").getValue()).toString();
-            dewLabel.setText(String.format("%s F", dew));
-        }
-
-        if (dataSnapshot.child("saturatedvapor").child("current").getValue() != null) {
-            String satVap = Objects.requireNonNull(dataSnapshot.child("saturatedvapor").child("current").getValue()).toString();
-            satVapLabel.setText(String.format("%s mb", satVap));
-        }
-
-        if (dataSnapshot.child("moisture").child("current").getValue() != null) {
-            String moisture = Objects.requireNonNull(dataSnapshot.child("moisture").child("current").getValue()).toString();
-
-            if (dataSnapshot.child("moisture").child("threshold").getValue() != null) {
-                String threshold = Objects.requireNonNull(dataSnapshot.child("moisture").child("threshold").getValue()).toString();
-                int moist = Integer.parseInt(moisture);
-                int thresh = Integer.parseInt(threshold);
-                int defaultColor = moistLabel.getTextColors().getDefaultColor();
-                if (moist < thresh) {
-                    moistLabel.setTextColor(Color.RED);
-                } else {
-                    moistLabel.setTextColor(defaultColor);
-                }
-            }
-
-            moistLabel.setText(String.format("%s %%", moisture));
-        }
-
-        if (dataSnapshot.child("temp").child("current").getValue() != null) {
-            String temperature = Objects.requireNonNull(Objects.requireNonNull(dataSnapshot.child("temp").child("current").getValue())).toString();
-
-            if (dataSnapshot.child("temp").child("threshold").getValue() != null) {
-                String threshold = Objects.requireNonNull(dataSnapshot.child("temp").child("threshold").getValue()).toString();
-                int temp = Integer.parseInt(temperature);
-                int thresh = Integer.parseInt(threshold);
-                int defaultColor = tempLabel.getTextColors().getDefaultColor();
-                if (temp > thresh) {
-                    tempLabel.setTextColor(Color.RED);
-                } else {
-                    tempLabel.setTextColor(defaultColor);
-                }
-            }
-
-            tempLabel.setText(String.format("%s F", temperature));
-        }
     }
 
     //method for settings button
@@ -151,4 +168,9 @@ public class DetailsActivity extends AppCompatActivity {
         startActivity(newActivity);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent newActivity = new Intent(this, GardenListActivity.class);
+        startActivity(newActivity);
+    }
 }

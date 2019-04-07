@@ -22,7 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
-    private final String TAG = ForgotPasswordActivity.class.getSimpleName();
+    private static final String TAG = ForgotPasswordActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private EditText emailEdit;
 
@@ -60,7 +60,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                if (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).size() == 0) {
+                if (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).isEmpty()) {
                     errorEmail.setError("Email does not exists");
                 } else {
                     mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -83,6 +83,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     //method for opening login page
     private void openLoginPage() {
         Intent newActivity = new Intent(this, LoginActivity.class); //opens the sign up page
+        startActivity(newActivity);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent newActivity = new Intent(this, LoginActivity.class);
         startActivity(newActivity);
     }
 }
