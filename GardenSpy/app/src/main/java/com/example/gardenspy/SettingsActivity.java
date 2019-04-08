@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
-    private static final int INT = 24;
+    private static final int INT = 23;
     private static final String TAG = SettingsActivity.class.getSimpleName();
     private static boolean powerState;
 
