@@ -75,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
         final TextView humidityLabel = findViewById(R.id.humidityThreshLabel);
 
         //creating database instance
-        final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user/key/plants/reaper");
+        final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper");
 
         ToggleButton toggle = findViewById(R.id.PowerButton);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
