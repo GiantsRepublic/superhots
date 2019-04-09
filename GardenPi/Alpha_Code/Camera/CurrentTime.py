@@ -1,6 +1,6 @@
 # Class: CurrentTime.py
 # Luke Duvall
-# This class get current values in the enviorment
+# This class get current time
 
 # Import Datetime libraries
 import datetime
