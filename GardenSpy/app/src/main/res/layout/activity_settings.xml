@@ -71,7 +71,7 @@
                 android:id="@+id/moistThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="@string/moistlabel"
+                tools:text="@string/moistlabel"
                 android:textSize="20sp" />
 
             <Space
@@ -113,9 +113,8 @@
                 android:id="@+id/tempThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="@string/templabel"
-                android:textSize="20sp"
-                tools:text="tempLabel" />
+                tools:text="@string/templabel"
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -158,9 +157,8 @@
                 android:id="@+id/onThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="@string/onlabel"
-                android:textSize="20sp"
-                tools:text="onLabel" />
+                tools:text="@string/onlabel"
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -202,10 +200,9 @@
                 android:id="@+id/offThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="@string/offlabel"
                 android:textSize="20sp"
                 android:visibility="visible"
-                tools:text="offLabel" />
+                tools:text="@string/offlabel" />
 
             <Space
                 android:layout_width="0dp"
@@ -247,9 +244,8 @@
                 android:id="@+id/humidityThreshLabel"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="@string/humiditylabel"
-                android:textSize="20sp"
-                tools:text="humidityLabel" />
+                tools:text="@string/humiditylabel"
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="0dp"

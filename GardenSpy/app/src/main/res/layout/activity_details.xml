@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -38,7 +39,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
@@ -46,7 +47,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
@@ -69,8 +70,8 @@
                 android:id="@+id/dateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/date"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:text="@string/date" />
         </LinearLayout>
 
         <TextView
@@ -85,7 +86,7 @@
             android:id="@+id/timeLabel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="@string/time"
+            tools:text="@string/time"
             android:textSize="20sp" />
 
         <TextView
@@ -100,7 +101,7 @@
             android:id="@+id/humLabel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="@string/humlabel"
+            tools:text="@string/humlabel"
             android:textSize="20sp" />
 
         <TextView
@@ -115,7 +116,7 @@
             android:id="@+id/vaporLabel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="@string/vapLabel"
+            tools:text="@string/vapLabel"
             android:textSize="20sp" />
 
         <TextView
@@ -130,8 +131,7 @@
             android:id="@+id/dewLabel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/dewlabel"
-            android:text="@string/dewlabel"
+            tools:text="@string/dewlabel"
             android:textSize="20sp" />
 
         <TextView
@@ -146,8 +146,7 @@
             android:id="@+id/satVapLabel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/sarvaplabel"
-            android:text="@string/sarvaplabel"
+            tools:text="@string/sarvaplabel"
             android:textSize="20sp" />
 
         <TextView
@@ -162,8 +161,7 @@
             android:id="@+id/moistLabel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/moistlabel"
-            android:text="@string/moistlabel"
+            tools:text="@string/moistlabel"
             android:textSize="20sp" />
 
         <TextView
@@ -178,8 +176,7 @@
             android:id="@+id/tempLabel"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/templabel"
-            android:text="@string/templabel"
+            tools:text="@string/templabel"
             android:textSize="20sp" />
 
     </LinearLayout>
