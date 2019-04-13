@@ -75,7 +75,11 @@ public class SettingsActivity extends AppCompatActivity {
         final TextView humidityLabel = findViewById(R.id.humidityThreshLabel);
 
         //creating database instance
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //String userid = user.getUid();
+        //DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user");
         final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper");
+
 
         ToggleButton toggle = findViewById(R.id.PowerButton);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -85,6 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        //rootRef.child(userid).addListenerForSingleValueEvent(new ValueEventListener() { }
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

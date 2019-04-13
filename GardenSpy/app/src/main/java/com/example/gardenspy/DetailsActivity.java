@@ -135,11 +135,16 @@ public class DetailsActivity extends AppCompatActivity {
 
 
         //creating database instance
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //String userid = user.getUid();
+        //DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user");
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper");
 
+        //rootRef.child(userid).addListenerForSingleValueEvent(new ValueEventListener() { }
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //
                 getDate(dataSnapshot, dateLabel);
                 getTime(dataSnapshot, timeLabel);
                 getHumidity(dataSnapshot, humLabel);
@@ -186,6 +191,11 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent newActivity = new Intent(this, GardenListActivity.class);
+        startActivity(newActivity);
+    }
+
+    public void openImageDialog(View view) {
+        Intent newActivity = new Intent(this, ImageViewActivity.class);
         startActivity(newActivity);
     }
 }

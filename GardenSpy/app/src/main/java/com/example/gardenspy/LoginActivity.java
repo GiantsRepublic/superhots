@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,13 +31,15 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); //Grabs the current user in Firebase the app is signed in on. If there isn't any it returns null
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance(); //Grabs the current user in Firebase the app is signed in on. If there isn't any it returns null
 
-        if (user != null) { //if there is a user signed in, it skips the login activity and goes into Garden List
+        if (mAuth.getCurrentUser() != null) { //if there is a user signed in, it skips the login activity and goes into Garden List
             Intent newActivity = new Intent(this, GardenListActivity.class);
             startActivity(newActivity);
-        } else { //when there is no user logged in
+            finish();
+        }
+        //when there is no user logged in
             setContentView(R.layout.activity_login);
 
             //put the input text into EditText variables to convert into strings.
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     loginUser();
                 }
             });
-        }
+
     }
 
     private void loginUser() {

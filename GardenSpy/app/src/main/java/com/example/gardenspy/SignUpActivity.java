@@ -22,6 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -130,9 +132,12 @@ public class SignUpActivity extends AppCompatActivity {
                                                 .setDisplayName(name)
                                                 .build();
                                         Objects.requireNonNull(mAuth.getCurrentUser()).updateProfile(profileUpdate);
-                                        FirebaseAuth.getInstance().signOut();
+                                        String userID = mAuth.getUid();
+                                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("user");
+                                        rootRef.child(userID).child("plants").child("reaper").child("humid").child("threshold").setValue(60);
                                         Toast.makeText(getApplicationContext(), "Registered", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Login if Registration is successful.
+                                        mAuth.signOut();
+                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class)); //Go to Garden if Registration is successful.
                                         finish();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Unable to Register", Toast.LENGTH_SHORT).show(); //Error message if Registration fails.

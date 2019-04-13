@@ -2,7 +2,6 @@
     <string name="app_name">Garden Spy</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="register">Create an Account</string>
     <string name="password">Password</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="email">Email</string>
@@ -41,4 +40,5 @@
     <string name="power_on_off">Power On/Off</string>
     <string name="save_edits">Save Edits</string>
     <string name="send_email">Send Email</string>
+    <string name="get_image">Show Environment</string>
 </resources>
