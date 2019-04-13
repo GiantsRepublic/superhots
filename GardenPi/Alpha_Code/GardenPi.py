@@ -5,6 +5,8 @@
 # Import Time library
 import time
 
+time.sleep(20)
+
 # Import GPIO library (for hardware GPIO)
 import RPi.GPIO as GPIO
 
@@ -14,6 +16,8 @@ from CurrentEnvironment import CurrentEnvironment
 
 # Import Firebase library
 from firebase import firebase
+
+#time.sleep(20)
 
 # Firebase Database Reference
 fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
@@ -41,7 +45,7 @@ print('----------------------')
 
 while True:
     
-    #th.checkThreshold(fb)
+    #th.setThreshold(fb)
     ce.checkCurrent(fb)
                                                                      
     # Check Soil Moisture
@@ -49,10 +53,10 @@ while True:
         # Moisture state
         print('Moisture - LOW')
         # Turn on/off water pump
-        #GPIO.output(23, False)
+        GPIO.output(23, False)
         print('WATER PUMP - ON')
         time.sleep(3)    # 3 second water cycle 
-        #GPIO.output(23, True)
+        GPIO.output(23, True)
         print('WATER PUMP - OFF')
         
     else:

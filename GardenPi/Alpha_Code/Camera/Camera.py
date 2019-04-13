@@ -1,46 +1,63 @@
-# camera.py
+# Camera.py
 # Author: Luke Duvall
-# Timelapse
+# Main program that runs the GardenBot
+
+# Import Time library
 import time
-time.sleep(20)
+
+# Import Pi Camera library
 from picamera import PiCamera
-import datetime
+
+# Import Firebase libraries
 from google.cloud import storage
 from firebase import firebase
-from Threshold import Threshold
+
+# Import Classes
+from Timer import Timer
 from CurrentTime import CurrentTime
 
+# Instance of Firebase
 fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
 
+# Instance of Storage
 storage_client = storage.Client.from_service_account_json('/home/pi/superhots/GardenPi/Alpha_Code/Camera/test-76183593397d.json')
-
 bucket = storage_client.get_bucket('test-5487a.appspot.com')
 
+# Pi Camera Setup
 camera = PiCamera()
 camera.resolution = (1296,972)
 camera.rotation = 270
 
-# Initatiate Levels and Thresholds
+# Instance of Levels and Thresholds
 ce = CurrentTime()
-th = Threshold()
+th = Timer()
 
 while True:
     
-    th.checkThreshold(fb)
+    # Get Timer Changes and Current Time
+    th.setTimer(fb)
     ce.checkCurrent()
     
-    current_hour = datetime.datetime.now()
+    #current_hour = datetime.datetime.now()
     
+    # Create timestamp string for timelapse picture
     timestamp = time.strftime('%m%d%Y_%H%M%S')
     
-    if(ce.getHour() >= th.getTimeOn()+1 and ce.getHour() < th.getTimeOff()-1):
+    # Check Timer
+    if(ce.getHour() >= th.getTimeOn() and ce.getHour() < th.getTimeOff()):
+        # Start Camera
         camera.start_preview()
         time.sleep(2)
+        # Capture Timelapse
         camera.capture('/home/pi/Pictures/Reaper - ' + timestamp + '.jpg')
         time.sleep(2)
+        # Capture Current Snapshot
         camera.capture('/home/pi/Pictures/currentpicture.jpg')
+        
+        # Upload to Firebase
         current_picture = bucket.blob('currentpicture.jpg')
         current_picture.upload_from_filename(filename='/home/pi/Pictures/currentpicture.jpg')
-        time.sleep(30)
+        
+        time.sleep(30)    # Wait 30 Seconds
     else:
-        time.sleep(30)
+        time.sleep(30)    # Wait 30 Seconds

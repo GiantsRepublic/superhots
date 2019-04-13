@@ -2,9 +2,6 @@
 # Luke Duvall
 # This class get current values in the enviorment
 
-# Import Firebase library 
-#from firebase import firebase
-
 # Math library
 import math
 
@@ -22,9 +19,6 @@ import dht11
 SPI_PORT   = 0
 SPI_DEVICE = 0
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
-
-# Firebase Database Reference
-#fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
 
 class CurrentEnvironment:
         
@@ -67,14 +61,16 @@ class CurrentEnvironment:
         # Current Hour
         self.current_hour = current_datetime.hour
             
-        temp_fb = fb.patch('user/key/plants/reaper/temp/', {'current':self.temp})
-        humid_fb = fb.patch('user/key/plants/reaper/humid/', {'current':self.humid})
-        sat_vap_fb = fb.patch('user/key/plants/reaper/saturatedvapor/', {'current':self.sat_vapor})
-        act_vap_fb = fb.patch('user/key/plants/reaper/actualvapor/', {'current':self.act_vapor})
-        dew_fb = fb.patch('user/key/plants/reaper/dewpoint/', {'current':self.dew_f})
-        moist_fb = fb.patch('user/key/plants/reaper/moisture/', {'current':self.moist})
-        date_fb = fb.patch('user/key/plants/reaper/date/', {'current':current_datetime.strftime('%m/%d/%Y')})
-        time_fb = fb.patch('user/key/plants/reaper/time/', {'current':current_datetime.strftime('%H:%M:%S')})
+        temp_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/temp/', {'current':self.temp})
+        humid_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/humid/', {'current':self.humid})
+        sat_vap_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/saturatedvapor/', {'current':self.sat_vapor})
+        act_vap_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/actualvapor/', {'current':self.act_vapor})
+        dew_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/dewpoint/', {'current':self.dew_f})
+        moist_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/moisture/', {'current':self.moist})
+        date_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/date/', {'current':current_datetime.strftime('%m/%d/%Y')})
+        time_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/time/', {'current':current_datetime.strftime('%H:%M:%S')})
+        
+        #temp_thresh_fb = fb.patch('/user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/temp', {'threshold':1})
         
     def getTemp(self):
         
