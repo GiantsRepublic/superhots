@@ -38,8 +38,6 @@ while True:
     th.setTimer(fb)
     ce.checkCurrent()
     
-    #current_hour = datetime.datetime.now()
-    
     # Create timestamp string for timelapse picture
     timestamp = time.strftime('%m%d%Y_%H%M%S')
     
