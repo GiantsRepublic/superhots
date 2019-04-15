@@ -17,8 +17,6 @@ from CurrentEnvironment import CurrentEnvironment
 # Import Firebase library
 from firebase import firebase
 
-#time.sleep(20)
-
 # Firebase Database Reference
 fb = firebase.FirebaseApplication('https://test-5487a.firebaseio.com/', None)
 
@@ -45,7 +43,7 @@ print('----------------------')
 
 while True:
     
-    #th.setThreshold(fb)
+    th.setThreshold(fb)
     ce.checkCurrent(fb)
                                                                      
     # Check Soil Moisture
@@ -53,10 +51,10 @@ while True:
         # Moisture state
         print('Moisture - LOW')
         # Turn on/off water pump
-        GPIO.output(23, False)
+        #GPIO.output(23, False)
         print('WATER PUMP - ON')
         time.sleep(3)    # 3 second water cycle 
-        GPIO.output(23, True)
+        #GPIO.output(23, True)
         print('WATER PUMP - OFF')
         
     else:
@@ -69,14 +67,14 @@ while True:
         # Temperature State
         print('Temperature - HOT')
         # Turn on fan #1
-        GPIO.output(18, False)
+        #GPIO.output(18, False)
         print('FAN #1 - ON')
         
     else:
         # Temperature State
         print('Temperature - GOOD')
         # Turn off fan #1
-        GPIO.output(18, True)
+        #GPIO.output(18, True)
         print('FAN #1 - OFF')
     
     # Check Humidity
@@ -84,14 +82,14 @@ while True:
         # Humidity State
         print('Humidity - TOO HUMID')
         # Turn on fan #1
-        GPIO.output(27, False)
+##        GPIO.output(27, False)
         print('FAN #2 - ON')
         
     else:
         # Humidity State
         print('Humidity - GOOD')
         # Turn off fan #1
-        GPIO.output(27, True)
+##        GPIO.output(27, True)
         print('FAN #2 - OFF')
     
     # Check Light Cycle

@@ -70,8 +70,6 @@ class CurrentEnvironment:
         date_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/date/', {'current':current_datetime.strftime('%m/%d/%Y')})
         time_fb = fb.patch('user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/time/', {'current':current_datetime.strftime('%H:%M:%S')})
         
-        #temp_thresh_fb = fb.patch('/user/xD67KpdT7YgZ9qEVv8BrmIAccZ53/plants/reaper/temp', {'threshold':1})
-        
     def getTemp(self):
         
         return self.temp
